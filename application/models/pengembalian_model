@@ -1,0 +1,28 @@
+<?php
+
+
+class Trans_pengembalian_model extends MY_Model{
+
+	function __construct()
+	{
+		$this->table_name = 'mst_anggota';
+		parent::__construct();
+	}
+	
+	function get_records($limit = 10, $offset = 0)
+	{
+		$this->db->select("trans_pengembalian.*, mst_anggota.NAMA_ANGGOTA, mst_buku.JUDUL_PUSTAKA");
+		$this->db->from("trans_pengembalian");
+		$this->db->join("mst_anggota", "trans_pengembalian.no_anggota = mst_anggota.no_anggota");
+		$this->db->join("mst_buku", "trans_pengembalian.no_induk = mst_buku.no_induk");
+		
+		$query = $this->db->get();
+		
+		return $query->result();
+	}
+	
+	function insert($data)
+	{
+		return $this->db->insert("trans_pengembalian", $data);
+	}
+}
