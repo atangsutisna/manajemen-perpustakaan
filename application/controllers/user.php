@@ -1,6 +1,10 @@
 <?php
 
 
+/**
+ * This use should be member too
+ * 
+ * */
 class User extends MY_Controller {
 	
 	
@@ -20,9 +24,9 @@ class User extends MY_Controller {
 	function update()
 	{
 		$user_id = $this->input->post('user_id');
-		$nama_lengkap = $this->input->post('nama_lengkap');
+		$full_name = $this->input->post('nama_lengkap');
 		$email = $this->input->post('email');
-		$no_telp = $this->input->post('no_telp');
+		$phone_number = $this->input->post('no_telp');
 		$password = $this->input->post('password');
 		$retype_password = $this->input->post('retype_password');
 		
@@ -30,8 +34,7 @@ class User extends MY_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'xss_clean|required|valid_email');
 		$this->form_validation->set_rules('no_telp', 'No Telp', 'xss_clean|required|numeric');
 		
-		if (!empty($password))
-		{
+		if (!empty($password)) {
 			$this->form_validation->set_rules('password', 'Password', 'xss_clean|required|min_length[6]|max_length[25]');
 			$this->form_validation->set_rules('retype_password', 'Re Password', 'xss_clean|mathes[password]');
 		}
@@ -39,24 +42,20 @@ class User extends MY_Controller {
 		if ($this->form_validation->run())
 		{
 			$data = array(
-				'NAMA_LENGKAP' => $nama_lengkap,
+				'NAMA_LENGKAP' => $full_name,
 				'EMAIL' => $email,
-				'NO_TELP' => $no_telp
+				'NO_TELP' => $phone_number
 			);
 			
-			if (! empty($password))
-			{
+			if (! empty($password)) {
 				$data['PASSWORD'] = $password;
 			}
 			
 			$update = $this->user_model->update(array('ID' => $user_id), $data);
-			if ($update)
-			{
+			if ($update) {
 				$this->session->set_flashdata('notice', 'Data has been saved');
-			}
-			else
-			{	
-				$this->session->set_flashdata('error', 'Error have occur when update process');
+			} else {	
+				$this->session->set_flashdata('error', 'Error occur when updating data');
 			}
 			
 			redirect('user');
