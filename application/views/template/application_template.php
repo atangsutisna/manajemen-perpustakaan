@@ -50,7 +50,7 @@
 	</div>
 	<div class="row">
 		<?php echo anchor('user', 'Ubah Profil'); ?> | 
-		<?php echo anchor('buku', 'Tambah Katalog Baru'); ?> |
+		<?php echo anchor('book', 'Tambah Katalog Baru'); ?> |
 		<?php echo anchor('circulation', 'Mulai Transaksi Baru'); ?> |
 		<?php echo anchor('#', 'Pengembalian Cepat'); ?> |
 		<?php echo anchor('anggota', 'Tambah Anggota'); ?> |

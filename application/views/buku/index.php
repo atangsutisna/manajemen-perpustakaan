@@ -72,29 +72,22 @@
 		<!-- end form -->
 		<div id="list-buku">
 		<!-- start table -->
-		<?php
-			echo table_open_tag("cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"");
-			
-			$title = array('Judul Pustaka', 'ISBN/ISNN', 'Copies', 'Last Update', '');
-			echo table_title($title);
-			
-			foreach ($results as $row)
-			{
-				$data = array(
-								$row->JUDUL_PUSTAKA,
-								$row->ISBN_ISSN,
-								! $row->JUMLAH ? "none" : $row->JUMLAH,
-								date("d M Y", strtotime($row->TANGGAL_INPUT)),
-								form_checkbox('check[]', $row->ID).  ' | '.
-								edit_path('buku', $row->ID). ' | '.
-								anchor('buku/add_item', 'Add Items')
-							 );
-				echo table_contents($data);
-				
-			}
-			echo table_close_tag();
-			echo data_is_empty($results);
-		?>
+		<table class="table">
+			<tr>
+				<th>Judul Pustaka</th>
+				<th>ISBN/ISNN</th>
+				<th>Qty</th>
+				<th>Terakhir diubah</th>
+			</tr>
+			<?php foreach ($results as $book) : ?>
+			<tr>
+				<td><?php echo $book->JUDUL_PUSTAKA ?></td>
+				<td><?php echo $book->ISBN_ISSN ?></td>
+				<td><?php echo $book->JUMLAH ?></td>
+				<td><?php echo date("d M Y", strtotime($book->TANGGAL_INPUT)) ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
 		<div style="text-align: center">
 			<?php echo isset($pages) ? $pages : ''; ?>
 		</div>
