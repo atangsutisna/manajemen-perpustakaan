@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "authentication";
+$route['default_controller'] = "loggedin";
 $route['404_override'] = '';
 
 $route['klasifikasi/(:num)/delete'] = 'klasifikasi/delete/$1';
@@ -55,8 +55,8 @@ $route['user_group/(:num)/edit'] = 'user_group/edit/$1';
 
 $route['menu/(:num)/edit'] = 'menu/edit/$1';
 
-$route['login'] = 'authentication/login';
-$route['logout'] = 'authentication/logout';
+$route['opensession'] = 'loggedin/opensession';
+$route['endsession'] = 'loggedin/endsession';
 
 $route['setting/save'] = 'application_setting/save';
 $route['setting'] = 'application_setting/index';

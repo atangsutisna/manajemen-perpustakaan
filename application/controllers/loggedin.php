@@ -1,11 +1,11 @@
 <?php
-class Authentication extends CI_Controller{
+class Loggedin extends CI_Controller{
 
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->model('user_model');
-		$this->form_validation->set_error_delimiters("<div class='log_error'>","</div>");
+		$this->form_validation->set_error_delimiters("<span class='label label-danger'>","</span>");
 	}
 	
 	function index()
@@ -19,7 +19,7 @@ class Authentication extends CI_Controller{
 		} 
 	}
 	
-	function login()
+	function opensession()
 	{
 		$this->form_validation->set_rules('username','Username','required');
 		$this->form_validation->set_rules('password','Password','required');
@@ -38,15 +38,15 @@ class Authentication extends CI_Controller{
 				redirect('authentication');
 			}
 		} else {
-			$this->load->view('login');
+			$this->load->view('form_loggedin');
 		}
 	}
 	
-	function logout() {
+	function endsession() {
 		$this->session->unset_userdata('user_login');
 		$this->session->sess_destroy();
 		
 		$this->session->set_flashdata('notice', 'Anda telah berhasil logout');
-		redirect('authentication');
+		redirect('loggedin');
 	}
 }
