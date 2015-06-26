@@ -18,7 +18,12 @@ class MY_Controller extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->library('uri');
-		if (!$this->before_load()) redirect('authentication');
+		/**
+		if (!$this->is_authenticated()) {
+			$this->session->set_flashdata('warn','Silahkan Loggin');
+			redirect('loggedin');
+		} */
+		
 		$this->module_name = $model_name;
 		$this->model_name = "{$model_name}_model";
 		$this->load->model(array($this->model_name, 'menu_group_model', 'menu_model', 'setting_model'));
@@ -124,15 +129,13 @@ class MY_Controller extends CI_Controller{
 		$this->load->view($this->template, $this->data);
 	}
 	
-	function before_load()
+	function is_authenticated()
 	{
 		$this->user_login = $this->session->userdata('user_login');
 		
-		if (!empty($this->user_login))
-		return TRUE;
-		else
-		{
-			$this->session->set_flashdata('notice','Maaf, anda tidak di ijinkan masuk');
+		if (!empty($this->user_login)) {
+			return TRUE;	
+		} else {
 			return FALSE;
 		}
 	}

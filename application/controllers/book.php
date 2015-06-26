@@ -1,7 +1,7 @@
 <?php
 
 
-class Buku extends MY_Controller{
+class Book extends MY_Controller{
 
 	function __construct()
 	{

@@ -9,7 +9,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3">
-			<h2>Please Logged In</h2>
+			<h2>Loggin</h2><hr/>
 			<?php echo form_open('opensession', 'form-signin') ?>
 			<div class="form-group">
 				<label for="username">Username</label>

@@ -17,7 +17,7 @@ class User extends MY_Controller {
 	function index()
 	{
 		$this->data['main'] = "user/index";
-		$this->data['user'] = $this->user_model->get_profile($this->get_current_user());
+		$this->data['user'] = $this->user_model->get_profile("admin");
 		$this->load->view($this->template, $this->data);
 	}
 	
