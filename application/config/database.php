@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['hostname'] = 'atangsutisna-manajemen-perpustakaan-1613804';
+$db['default']['username'] = 'atangsutisna';
 $db['default']['password'] = '';
-$db['default']['database'] = 'mylibrary_db';
+$db['default']['database'] = 'library_management';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
