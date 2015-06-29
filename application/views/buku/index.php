@@ -29,9 +29,9 @@
 			complete: function(){
 					$("#loading").hide();
 			},
-			url: "<?php echo base_url(); ?>index.php/buku/show_catalog_ajax",
+			url: "<?php echo base_url(); ?>index.php/book/show_catalog_ajax",
 			success: function(data){
-				$("#list-buku").html(data);
+				$("#list-book").html(data);
 			}
 		});
 	});
@@ -43,9 +43,9 @@
 <div id="tabs">
 	<ul>
 		<li><a href="#tabs-1" id="katalog">Daftar Katalog</a></li>
-		<li><a href="<?php echo base_url(); ?>index.php/buku/add">Tambah Katalog Baru</a></li>
-		<li><a href="<?php echo base_url(); ?>index.php/buku/show_koleksi_ajax">Daftar Koleksi</a></li>
-		<li><a href="<?php echo base_url(); ?>index.php/buku/show_koleksi_keluar">Daftar Koleksi Keluar</a></li>
+		<li><a href="<?php echo base_url(); ?>index.php/book/add">Tambah Katalog Baru</a></li>
+		<li><a href="<?php echo base_url(); ?>index.php/book/show_koleksi_ajax">Daftar Koleksi</a></li>
+		<li><a href="<?php echo base_url(); ?>index.php/book/show_koleksi_keluar">Daftar Koleksi Keluar</a></li>
 	</ul>
 	<div id="loading" style="margin-left: auto; margin-right: auto; width: 128px; position: fixed;">
 			<img src="<?php echo base_url(); ?>asset/loading51.gif">
@@ -54,15 +54,15 @@
 		<!-- start form -->
 		<img src="<?php echo base_url(); ?>asset/images/catalog64.png" align="left">
 		<p style="border-bottom: 1px solid #757575; margin-left: 83px;">
-			<b>KATALOG</b>- Jika ingin melakukan pencarian, silahkan masukan Judul buku kemudian klik tombol cari.<br>
+			<b>KATALOG</b>- Jika ingin melakukan pencarian, silahkan masukan Judul book kemudian klik tombol cari.<br>
 			<form method="post" style="margin-left: 83px;">
-			Masukan Judul Buku : <input type="text" name="judul_buku" size="35">
+			Masukan Judul book : <input type="text" name="judul_book" size="35">
 			Klasifikasi <?php echo form_dropdown('clasifications', $clasifications); ?>
 			<?php echo form_submit('submit','cari')?>
 			</form>
 		</p>	
 		<div style="float: right; margin-top:10px;">
-			Total : <?php echo $count_buku; ?> buku
+			Total : <?php echo $count_book; ?> book
 		</div>
 		<div style="margin-top: 5px;">
 			<input type="button" value="Hapus Data Terpilih" name="delete_selected">
@@ -70,9 +70,9 @@
 			<input type="button" value="Hilangkan Cek" name="delete_selected">
 		</div>
 		<!-- end form -->
-		<div id="list-buku">
+		<div id="list-book">
 		<!-- start table -->
-		<table class="table">
+		<table class="table table-bordered">
 			<tr>
 				<th>Judul Pustaka</th>
 				<th>ISBN/ISNN</th>

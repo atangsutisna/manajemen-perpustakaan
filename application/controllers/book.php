@@ -18,7 +18,7 @@ class Book extends MY_Controller{
 	function index()
 	{
 		$this->data['results'] = $this->buku_model->get_records();
-		$this->data['count_buku'] = $this->buku_model->count_books();
+		$this->data['count_book'] = $this->buku_model->count_books();
 		$this->data['main'] = 'buku/index';
 		$this->load->view($this->template, $this->data);
 		//echo $this->buku_model->count_records();
