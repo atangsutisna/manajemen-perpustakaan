@@ -1,7 +1,7 @@
 <?php
 
 
-class Buku_model extends MY_Model{
+class Book_model extends MY_Model{
 
 	function __construct()
 	{

@@ -22,10 +22,11 @@ class MY_Controller extends CI_Controller{
 		if (!$this->is_authenticated()) {
 			$this->session->set_flashdata('warn','Silahkan Loggin');
 			redirect('loggedin');
-		} */
+		}**/
 		
-		$this->module_name = $model_name;
-		$this->model_name = "{$model_name}_model";
+		
+		//$this->module_name = $model_name;
+		//$this->model_name = "{$model_name}_model";
 		$this->load->model(array($this->model_name, 'menu_group_model', 'menu_model', 'setting_model'));
 		$this->data['menu_group'] = $this->menu_group_model->get_records();
 		
@@ -34,6 +35,7 @@ class MY_Controller extends CI_Controller{
 		$this->data['nama_app'] = $row->NAMA_APP;
 		$this->data['default_denda'] = $row->DENDA;
 		
+		/**
 		$this->load->library('pagination');
 		$model = $this->model_name;
 		
@@ -41,7 +43,7 @@ class MY_Controller extends CI_Controller{
 		$config['total_rows'] = $this->$model->count_records();
 		$config['per_page'] = $this->limit;
 
-		$this->pagination->initialize($config); 
+		$this->pagination->initialize($config); **/
 	}
 	
 	function index($page = 0)

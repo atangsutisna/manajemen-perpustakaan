@@ -63,23 +63,25 @@
 	</button>
 </form>
 <div style="float: right; margin-top:10px;">
-	Total : <?php echo $count_book; ?> book
+	Total : <?php echo $book_amount; ?> book
 </div>
 <table class="table table-bordered table table-striped">
 	<tr>
+		<th>No</th>
 		<th>Judul Pustaka</th>
 		<th>ISBN/ISNN</th>
 		<th>Qty</th>
 		<th>Terakhir diubah</th>
 		<th>#</th>
 	</tr>
-	<?php foreach ($results as $book) : ?>
+	<?php foreach ($list_book as $row => $book) : ?>
 	<tr>
+		<td><?php echo $row + 1; ?></td>
 		<td><?php echo $book->JUDUL_PUSTAKA ?></td>
 		<td><?php echo $book->ISBN_ISSN ?></td>
 		<td><?php echo $book->JUMLAH ?></td>
 		<td><?php echo date("d M Y", strtotime($book->TANGGAL_INPUT)) ?></td>
-		<td><?php echo anchor('#', 'add item') ?></td>
+		<td><a href="#">Edit</a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

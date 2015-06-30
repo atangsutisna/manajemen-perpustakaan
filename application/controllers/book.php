@@ -1,40 +1,41 @@
 <?php
 
 
-class Book extends MY_Controller{
+class Book extends MY_Controller {
 
 	function __construct()
 	{
 		parent::__construct('buku');
-		$this->load->model('klasifikasi_model');
+		$this->load->model(array('klasifikasi_model', 'book_model'));
 		$this->data['clasifications'][''] = '--- Pilih Klasifikasi ---';
-		$klasifikasi = $this->klasifikasi_model->get_records();
-		foreach ($klasifikasi as $row)
-		{
+		$classifications = $this->klasifikasi_model->get_records();
+		foreach ($classifications as $row) {
 			$this->data['clasifications'][$row->KLASIFIKASI_ID] = $row->NAMA_KLASIFIKASI;
 		}
 	}
 	
 	function index()
 	{
-		$this->data['results'] = $this->buku_model->get_records();
-		$this->data['count_book'] = $this->buku_model->count_books();
+		$this->data['list_book'] = $this->book_model->get_records();
+		$this->data['book_amount'] = $this->book_model->count_books();
 		$this->data['main'] = 'buku/index';
 		$this->load->view($this->template, $this->data);
-		//echo $this->buku_model->count_records();
 	}
 	
-	function add()
+	function newForm() 
 	{
-		$this->load->view('buku/form', $this->data);
+		$this->data['main'] = 'buku/form';
+		$this->load->view($this->template, $this->data);
 	}
 	
-	function show_catalog_ajax()
+	function editForm($book_id) 
 	{
-		$this->data['results'] = $this->buku_model->get_records();
-		$this->load->view('buku/list-buku-ajax', $this->data);
+		$this->data['book'] = $this->book_model->get_record($book_id);
+		$this->data['main'] = 'buku/form';
+		$this->load->view($this->template, $this->data);
 	}
 	
+	/**
 	function show_koleksi_ajax()
 	{
 		$this->load->model('koleksi_model');
@@ -57,9 +58,9 @@ class Book extends MY_Controller{
 			$this->data['clasifications'][$row->ID] = $row->NAMA_KLASIFIKASI;
 		}
 		parent::edit($id);
-	}
+	} **/
 	
-	function save()
+	function save_book()
 	{
 		$data = array(
 				'KLASIFIKASI_ID' => $this->input->post('klasifikasi_id'),

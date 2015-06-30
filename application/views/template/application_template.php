@@ -59,7 +59,7 @@
 	<div class="row">
 		<?php $this->load->view($main); ?>	
 	</div>
-
+	<br/>
 	<div class="row">
 		<span class="center">
 		&copy; <b>Copyright 2012 by xit-solution</b>
