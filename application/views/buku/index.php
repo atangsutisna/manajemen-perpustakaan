@@ -56,9 +56,11 @@
 		<input type="text" name="judul_book" class="form-control" placeholder="Masukan judul buku">
 	</div>
 	<div class="form-group">
-	    <?php echo form_dropdown('clasifications', $clasifications, 'class="form-control"'); ?>
+	    <?php echo form_dropdown('clasifications', $clasifications, null, 'class="form-control"'); ?>
 	</div>
-	<?php echo form_submit('submit','cari', 'class="btn"')?>
+	<button type="submit" class="btn">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
 </form>
 <div style="float: right; margin-top:10px;">
 	Total : <?php echo $count_book; ?> book
