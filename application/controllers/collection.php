@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+ * 
+ * #url php myadmin
+https://manajemen-perpustakaan-atangsutisna.c9.io/phpmyadmin/
+username: atangsutisna
+ * */
 class Collection extends MY_Controller {
 
 	function __construct()
