@@ -41,15 +41,11 @@
  });**/
 </script>
 <?php echo $this->session->flashdata('notice')?>
-<ul>
-	<li><a href="#tabs-1" id="katalog">Daftar Katalog</a></li>
-	<li><a href="<?php echo base_url(); ?>index.php/book/add">Tambah Katalog Baru</a></li>
-	<li><a href="<?php echo base_url(); ?>index.php/book/show_koleksi_ajax">Daftar Koleksi</a></li>
-	<li><a href="<?php echo base_url(); ?>index.php/book/show_koleksi_keluar">Daftar Koleksi Keluar</a></li>
-</ul>
-
 <div class="alert alert-info">
 	<b>INFO</b>- Jika ingin melakukan pencarian, silahkan masukan Judul book kemudian klik tombol cari.<br>
+</div>
+<div class="pull-right">
+	<?php echo anchor('book/new_form', 'Katalog Baru', 'class="btn btn-primary"') ?>
 </div>
 <form method="post" class="form-inline">
 	<div class="form-group">
@@ -62,25 +58,31 @@
 		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>
 </form>
+<!--
 <div style="float: right; margin-top:10px;">
-	Total : <?php echo $book_amount; ?> book
-</div>
+	<!--Total : <?php //echo $book_amount; ?> book
+</div>-->
+<br/><br/>
 <table class="table table-bordered table table-striped">
 	<tr>
 		<th>No</th>
-		<th>Judul Pustaka</th>
 		<th>ISBN/ISNN</th>
-		<th>Qty</th>
+		<th>Barcode</th>
+		<th>Judul Pustaka</th>
+		<th>Status</th>
+		<th>Pembuatan</th>
 		<th>Terakhir diubah</th>
 		<th>#</th>
 	</tr>
 	<?php foreach ($list_book as $row => $book) : ?>
 	<tr>
 		<td><?php echo $row + 1; ?></td>
-		<td><?php echo $book->JUDUL_PUSTAKA ?></td>
 		<td><?php echo $book->ISBN_ISSN ?></td>
-		<td><?php echo $book->JUMLAH ?></td>
-		<td><?php echo date("d M Y", strtotime($book->TANGGAL_INPUT)) ?></td>
+		<td>empty</td>
+		<td><?php echo $book->JUDUL_PUSTAKA ?></td>
+		<td><?php echo $book->STATUS ? 'active' : 'inactive' ?></td>
+		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PEMBUATAN)) ?></td>
+		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PERUBAHAN)) ?></td>
 		<td><?php echo anchor('book/editForm/', 'Edit') ?></a></td>
 	</tr>
 	<?php endforeach; ?>

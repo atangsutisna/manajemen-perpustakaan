@@ -22,13 +22,13 @@ class Book extends MY_Controller {
 		$this->load->view($this->template, $this->data);
 	}
 	
-	function newForm() 
+	function new_form() 
 	{
 		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);
 	}
 	
-	function editForm($book_id) 
+	function form_edit($book_id) 
 	{
 		$this->data['book'] = $this->book_model->get_record($book_id);
 		$this->data['main'] = 'buku/form';

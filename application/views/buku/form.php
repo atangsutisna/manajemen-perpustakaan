@@ -1,3 +1,4 @@
+<h2>Katalog Baru</h2><hr/>
 <div class="col-lg-6">
  <?php echo form_open("book/save_book") ?>
  	<div class="form-group">
