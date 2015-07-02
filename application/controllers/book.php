@@ -35,34 +35,18 @@ class Book extends MY_Controller {
 		$this->load->view($this->template, $this->data);
 	}
 	
-	/**
-	function show_koleksi_ajax()
-	{
-		$this->load->model('koleksi_model');
-		$this->data['results'] = $this->koleksi_model->get_records();
-		$this->load->view('buku/list-koleksi-ajax', $this->data);
-	}
-	
-	function show_koleksi_keluar()
-	{
-		$this->load->view('buku/list-koleksi-keluar');
-	}
-	
-	function edit($id)
-	{
-		$this->load->model('klasifikasi_model');
-		$klasifikasi = $this->klasifikasi_model->get_records();
-		$this->data['clasifications'][''] = '--- Pilih Klasifikasi ---';
-		foreach ($klasifikasi as $row)
-		{
-			$this->data['clasifications'][$row->ID] = $row->NAMA_KLASIFIKASI;
-		}
-		parent::edit($id);
-	} **/
 	
 	function save_book()
 	{
-		$data = array(
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('judul_pustaka', 'Judul Pustaka', 'required');
+		$this->form_validation->set_rules('isbn_issn', 'ISBN_ISSN', 'required');
+		$this->form_validation->set_rules('pengarang', 'Pengarang', 'required');
+		$this->form_validation->set_rules('penerbit', 'Penerbit', 'required');
+		$this->form_validation->set_rules('tahun_terbit', 'Tahun Terbit', 'required');
+		
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
 				'KLASIFIKASI_ID' => $this->input->post('klasifikasi_id'),
 				'JUDUL_PUSTAKA' => $this->input->post('judul_pustaka'),
 				'ISBN_ISSN' => $this->input->post('isbn_issn'),
@@ -73,58 +57,14 @@ class Book extends MY_Controller {
 				'EDISI' => $this->input->post('edisi'),
 				'TANGGAL_INPUT'	=> date('Y-m-d')
 			);
-		$this->db->insert("mst_buku", $data);
-		$book_id = $this->db->insert_id();
-		$this->add_tocollection($book_id);
-	}
-	
-	function add_tocollection($book_id)
-	{
-		$this->data['book'] = $this->buku_model->get_record($book_id);
-		$this->load->view('buku/form-koleksi', $this->data);
-	}
-	
-	function save_tocollection()
-	{
-		$this->load->model('koleksi_model');
-		$data = array(
-			'BUKU_ID' => $this->input->post('buku_id'),
-			'KODE' => $this->input->post('kode'),
-			'PENEMPATAN' => $this->input->post('penempatan'),
-			'TYPE_KOLEKSI' => $this->input->post('type_koleksi'),
-			'NO_PESANAN' => $this->input->post('no_pesanan'),
-			'TGL_PESANAN' => $this->input->post('tgl_pesanan'),
-			'TGL_PENERIMAAN' => $this->input->post('tgl_penerimaan'),
-			'PENYEDIA' => $this->input->post('penyedia'),
-			'FAKTUR' => $this->input->post('faktur'),
-			'TGL_FAKTUR' => $this->input->post('tgl_faktur'),
-			'HARGA' => $this->input->post('harga'),
-			'STATUS'=> true,
-		);
-		if ($this->koleksi_model->save($data))
-		{
-			$this->session->set_flashdata('notice', 'Data has been saved');
+			$this->db->insert("mst_buku", $data);
+			$book_id = $this->db->insert_id();
+			$this->data['book'] = $this->book_model->get_record($book_id);
 		}
-		else
-		{
-			$this->session->set_flashdata('error', 'Sory, There are error occur');
-		}
-		
-		echo notice();
+		$this->load->view($this->template, $this->data);
 	}
 	
-	function _get_klasifikasi_slug($klasifikasi_id)
-	{
-		$klasifikasi = $this->klasifikasi_model->get_record($klasifikasi_id);
-		return $klasifikasi->SLUG;
-	}
-	
-	function _get_tempat_penyimpanan($klasifikasi_id)
-	{
-		$klasifikasi = $this->klasifikasi_model->get_record($klasifikasi_id);
-		return $klasifikasi->KLASIFIKASI_ID;
-	}
-	function find()
+	function find_book_by_term()
 	{
 		$this->form_validation->set_rules('keyword','Kata Pencarian','required');
 		
