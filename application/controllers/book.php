@@ -39,6 +39,7 @@ class Book extends MY_Controller {
 	function save_book()
 	{
 		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters("<span class='label label-danger'>","</span>");
 		$this->form_validation->set_rules('judul_pustaka', 'Judul Pustaka', 'required');
 		$this->form_validation->set_rules('isbn_issn', 'ISBN_ISSN', 'required');
 		$this->form_validation->set_rules('pengarang', 'Pengarang', 'required');
@@ -61,7 +62,13 @@ class Book extends MY_Controller {
 			$book_id = $this->db->insert_id();
 			$this->data['book'] = $this->book_model->get_record($book_id);
 		}
+		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);
+	}
+	
+	function book_receipt() 
+	{
+		$this->load->view($this->template, array('main' => 'buku/form_book_receipt'));
 	}
 	
 	function find_book_by_term()

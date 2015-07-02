@@ -81,7 +81,7 @@
 		<td><?php echo $book->ISBN_ISSN ?></td>
 		<td><?php echo $book->JUMLAH ?></td>
 		<td><?php echo date("d M Y", strtotime($book->TANGGAL_INPUT)) ?></td>
-		<td><a href="#">Edit</a></td>
+		<td><?php echo anchor('book/editForm/', 'Edit') ?></a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>
