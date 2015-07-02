@@ -83,7 +83,7 @@
 		<td><?php echo $book->STATUS ? 'active' : 'inactive' ?></td>
 		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PEMBUATAN)) ?></td>
 		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PERUBAHAN)) ?></td>
-		<td><?php echo anchor('book/editForm/', 'Edit') ?></a></td>
+		<td><?php echo anchor('book/form_edit/'. $book->ID, 'Edit') ?></a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>
