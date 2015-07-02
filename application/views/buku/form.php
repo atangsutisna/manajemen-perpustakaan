@@ -27,19 +27,9 @@
 		<?php echo form_error('penerbit')?>
  	</div>
  	<div class="form-group">
- 		<?php echo form_label('Tempat Terbit','tempat_terbit')?>
-		<?php echo form_input('tempat_terbit', set_value('tempat_terbit', isset($book->TEMPAT_TERBIT) ? $book->TEMPAT_TERBIT : ''), "class='form-control'")?>
-		<?php echo form_error('tempat_terbit')?>
- 	</div>
- 	<div class="form-group">
  		<?php echo form_label('Tahun Terbit','tahun_terbit')?>
 		<?php echo form_input('tahun_terbit', set_value('tahun_terbit', isset($book->TAHUN_TERBIT) ? $book->TAHUN_TERBIT : ''), "class='form-control'")?>
 		<?php echo form_error('tahun_terbit')?>
- 	</div>
- 	<div class="form-group">
- 		<?php echo form_label('Edisi','edisi')?>
-		<?php echo form_input('edisi', set_value('edisi', isset($book->EDISI) ? $book->EDISI : ''), "class='form-control'")?>
-		<?php echo form_error('edisi')?>
  	</div>
  	<?php echo form_submit('submit','Simpan', 'class="btn btn-primary"')?>
 	<?php echo form_button(array('class' => 'btn'), 'Kembali')?>
