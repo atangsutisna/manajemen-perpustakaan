@@ -45,7 +45,7 @@
 	<b>INFO</b>- Jika ingin melakukan pencarian, silahkan masukan Judul book kemudian klik tombol cari.<br>
 </div>
 <div class="pull-right">
-	<?php echo anchor('book/new_form', 'Katalog Baru', 'class="btn btn-primary"') ?>
+	<?php echo anchor('collection/new_form', 'Katalog Baru', 'class="btn btn-primary"') ?>
 </div>
 <form method="post" class="form-inline">
 	<div class="form-group">
@@ -60,7 +60,7 @@
 </form>
 <!--
 <div style="float: right; margin-top:10px;">
-	<!--Total : <?php //echo $book_amount; ?> book
+	<!--Total : <?php //echo $row_amount; ?> book
 </div>-->
 <br/><br/>
 <table class="table table-bordered table table-striped">
@@ -74,16 +74,16 @@
 		<th>Terakhir diubah</th>
 		<th>#</th>
 	</tr>
-	<?php foreach ($list_book as $row => $book) : ?>
+	<?php foreach ($list_collection as $idx => $row) : ?>
 	<tr>
-		<td><?php echo $row + 1; ?></td>
-		<td><?php echo $book->ISBN_ISSN ?></td>
+		<td><?php echo $idx + 1; ?></td>
+		<td><?php echo $row->ISBN_ISSN ?></td>
 		<td>empty</td>
-		<td><?php echo $book->JUDUL_PUSTAKA ?></td>
-		<td><?php echo $book->STATUS ? 'active' : 'inactive' ?></td>
-		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PEMBUATAN)) ?></td>
-		<td><?php echo date("d M Y", strtotime($book->TANGGAL_PERUBAHAN)) ?></td>
-		<td><?php echo anchor('book/form_edit/'. $book->ID, 'Edit') ?></a></td>
+		<td><?php echo $row->JUDUL_PUSTAKA ?></td>
+		<td><?php echo $row->STATUS ? 'active' : 'inactive' ?></td>
+		<td><?php echo date("d M Y", strtotime($row->TANGGAL_PEMBUATAN)) ?></td>
+		<td><?php echo date("d M Y", strtotime($row->TANGGAL_PERUBAHAN)) ?></td>
+		<td><?php echo anchor('collection/form_edit/'. $row->ID, 'Edit') ?></a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

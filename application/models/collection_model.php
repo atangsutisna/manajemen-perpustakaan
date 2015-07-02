@@ -1,11 +1,11 @@
 <?php
 
 
-class Book_model extends MY_Model{
+class Collection_model extends MY_Model{
 
 	function __construct()
 	{
-		$this->table_name = 'mst_buku';
+		$this->table_name = 'mst_collection';
 		parent::__construct();
 	}
 	
