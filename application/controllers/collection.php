@@ -99,9 +99,9 @@ class Collection extends MY_Controller {
 		$this->load->view($this->template, $this->data);
 	}
 	
-	function collection_receipt() 
+	function coll_receipt() 
 	{
-		$this->load->view($this->template, array('main' => 'buku/form_collection_receipt'));
+		$this->load->view($this->template, array('main' => 'buku/form_receipt_collection'));
 	}
 	
 	function find_collection_by_term()
