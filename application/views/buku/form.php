@@ -33,7 +33,7 @@
 		<?php echo form_input('tahun_terbit', set_value('tahun_terbit', isset($book->TAHUN_TERBIT) ? $book->TAHUN_TERBIT : ''), "class='form-control'")?>
 		<?php echo form_error('tahun_terbit')?>
  	</div>
- 	<?php if (isset($book->ID)) : ?>
+ 	<?php if (!isset($book->ID)) : ?>
  	<div class="form-group">
  		<?php echo form_label('Qty','qty')?>
 		<?php echo form_input(array('name' => 'qty', 'type' => 'number'), 
