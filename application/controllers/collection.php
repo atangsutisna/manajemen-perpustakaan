@@ -11,6 +11,7 @@ class Collection extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct('buku');
+		$this->load->library('session');
 		$this->load->model(array('klasifikasi_model', 'collection_model'));
 		$this->data['clasifications'][''] = '--- Pilih Klasifikasi ---';
 		$classifications = $this->klasifikasi_model->get_records();
@@ -35,6 +36,15 @@ class Collection extends MY_Controller {
 	
 	function form_edit($collection_id) 
 	{
+		$this->data['book'] = $this->collection_model->get_record($collection_id);
+		$this->data['main'] = 'buku/form';
+		$this->load->view($this->template, $this->data);
+	}
+	
+	function form_view()
+	{
+		$collection_id = $this->input->get('collection_id');
+		$this->data['feedback_msg'] = $this->session->flashdata('feedback_msg');
 		$this->data['book'] = $this->collection_model->get_record($collection_id);
 		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);
@@ -68,8 +78,9 @@ class Collection extends MY_Controller {
 			if ($act === 'insert') {
 				$data['TANGGAL_PEMBUATAN'] = date('Y-m-d');
 				$this->collection_model->insert("mst_buku", $data);
-				$collection_id = $this->db->insert_id();
-				$this->data['book'] = $this->collection_model->get_record($collection_id);
+				$this->session->set_flashdata('feedback_msg', '1 data has been saved');
+				//$collection_id = $this->db->insert_id();
+				//$this->data['book'] = $this->collection_model->get_record($collection_id);
 			} elseif ($act === 'update') {
 				$data['TANGGAL_PERUBAHAN'] = date('Y-m-d');
 				$collection_id = $this->input->post('id');
@@ -77,8 +88,12 @@ class Collection extends MY_Controller {
 					'ID' => $collection_id
 				), 
 				$data);
-				$this->data['book'] = $this->collection_model->get_record($collection_id);
+				//$this->data['book'] = $this->collection_model->get_record($collection_id);
+				$this->session->set_flashdata('feedback_msg', '1 data has been updated');
 			}
+			
+			$collection_id = $this->input->post('id');
+			redirect('collection/form_view?collection_id='. $collection_id);
 		}
 		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);
