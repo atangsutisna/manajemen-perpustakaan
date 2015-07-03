@@ -45,7 +45,7 @@
 	<b>INFO</b>- Jika ingin melakukan pencarian, silahkan masukan Judul book kemudian klik tombol cari.<br>
 </div>
 <div class="pull-right">
-	<?php echo anchor('collection/new_form', 'Katalog Baru', 'class="btn btn-primary"') ?>
+	<?php echo anchor('collection/new_form', '<span class="glyphicon glyphicon-plus"></span> Katalog Baru', 'class="btn btn-primary"') ?>
 </div>
 <form method="post" class="form-inline">
 	<div class="form-group">
@@ -90,7 +90,7 @@
 			<b>Pembuatan: </b><?php echo date("d M Y", strtotime($row->TANGGAL_PEMBUATAN)) ?><br/>
 		    <b>Perubahan: </b><?php echo date("d M Y", strtotime($row->TANGGAL_PERUBAHAN)) ?>
 		</td>
-		<td><?php echo anchor('collection/form_edit/'. $row->ID, 'Edit') ?></a></td>
+		<td><?php echo anchor('collection/form_edit/'. $row->ID, '<span class="glyphicon glyphicon-pencil"></span>') ?></a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

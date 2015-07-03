@@ -1,4 +1,4 @@
-<h2>Katalog Baru</h2><hr/>
+<h2><span class="glyphicon glyphicon-book"></span> Katalog Baru</h2><hr/>
 <?php echo isset($feedback_msg) ? "<div class='alert alert-info'>'".$feedback_msg. "</div>" : '' ?>
 <div class="col-lg-6">
  <?php echo form_open("collection/save". (isset($book->ID) ? "?act=update" : "?act=insert")) ?>
