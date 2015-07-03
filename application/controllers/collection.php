@@ -35,13 +35,13 @@ class Collection extends MY_Controller {
 	
 	function form_edit($collection_id) 
 	{
-		$this->data['collection'] = $this->collection_model->get_record($collection_id);
+		$this->data['book'] = $this->collection_model->get_record($collection_id);
 		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);
 	}
 	
 	
-	function save_collection()
+	function save()
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters("<span class='label label-danger'>","</span>");
@@ -50,6 +50,7 @@ class Collection extends MY_Controller {
 		$this->form_validation->set_rules('pengarang', 'Pengarang', 'required');
 		$this->form_validation->set_rules('penerbit', 'Penerbit', 'required');
 		$this->form_validation->set_rules('tahun_terbit', 'Tahun Terbit', 'required');
+		$this->form_validation->set_rules('qty', 'Qty', 'required|number');
 		
 		if ($this->form_validation->run() == TRUE) {
 			$data = array(
@@ -59,13 +60,25 @@ class Collection extends MY_Controller {
 				'PENGARANG' => $this->input->post('pengarang'),
 				'PENERBIT' => $this->input->post('penerbit'),
 				'TAHUN_TERBIT' => $this->input->post('tahun_terbit'),
-				'EDISI' => $this->input->post('edisi'),
-				'TANGGAL_INPUT'	=> date('Y-m-d'),
-				'STATUS' => $this->input->post('status')
+				'STATUS' => $this->input->post('status'),
+				'QTY' => $this->input->post('qty')
 			);
-			$this->db->insert("mst_buku", $data);
-			$collection_id = $this->db->insert_id();
-			$this->data['collection'] = $this->collection_model->get_record($collection_id);
+			
+			$act = $this->input->get('act');
+			if ($act === 'insert') {
+				$data['TANGGAL_PEMBUATAN'] = date('Y-m-d');
+				$this->collection_model->insert("mst_buku", $data);
+				$collection_id = $this->db->insert_id();
+				$this->data['book'] = $this->collection_model->get_record($collection_id);
+			} elseif ($act === 'update') {
+				$data['TANGGAL_PERUBAHAN'] = date('Y-m-d');
+				$collection_id = $this->input->post('id');
+				$this->collection_model->update(array(
+					'ID' => $collection_id
+				), 
+				$data);
+				$this->data['book'] = $this->collection_model->get_record($collection_id);
+			}
 		}
 		$this->data['main'] = 'buku/form';
 		$this->load->view($this->template, $this->data);

@@ -1,6 +1,6 @@
 <h2>Katalog Baru</h2><hr/>
 <div class="col-lg-6">
- <?php echo form_open("book/save_book") ?>
+ <?php echo form_open("collection/save". (isset($book->ID) ? "?act=update" : "?act=insert")) ?>
  	<?php echo form_hidden('id', isset($book->ID) ? $book->ID : null) ?>
  	<div class="form-group">
  		<?php echo form_label('Klasifikasi','klasifikasi_id', null, 'class="form-control"')?>
@@ -32,13 +32,22 @@
 		<?php echo form_input('tahun_terbit', set_value('tahun_terbit', isset($book->TAHUN_TERBIT) ? $book->TAHUN_TERBIT : ''), "class='form-control'")?>
 		<?php echo form_error('tahun_terbit')?>
  	</div>
+ 	<?php if (isset($book->ID)) : ?>
+ 	<div class="form-group">
+ 		<?php echo form_label('Qty','qty')?>
+		<?php echo form_input(array('name' => 'qty', 'type' => 'number'), 
+		      set_value('qty', isset($book->QTY) ? $book->QTY : ''), 
+		      "class='form-control'")?>
+		<?php echo form_error('tahun_terbit')?>
+ 	</div>
+ 	<?php endif; ?>
  	<div class="form-group">
  		<?php echo form_label('Status','status')?>
 		<?php echo form_checkbox('status', isset($book->STATUS) ? $book->STATUS : FALSE, isset($book->STATUS) ? "checked" : "")?>
 		<?php echo form_error('tahun_terbit')?>
  	</div>
  	<?php echo form_submit('submit','Simpan', 'class="btn btn-primary"')?>
-	<?php echo form_button(array('class' => 'btn'), 'Kembali')?>
+	<?php echo anchor('collection', '<< Kembali', 'class="btn"') ?>
  </form>
 <?php echo form_close()?>
 </div>

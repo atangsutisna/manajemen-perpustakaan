@@ -66,23 +66,30 @@
 <table class="table table-bordered table table-striped">
 	<tr>
 		<th>No</th>
-		<th>ISBN/ISNN</th>
-		<th>Barcode</th>
-		<th>Judul Pustaka</th>
+		<th>Kode <br/>ISBN/ISNN</th>
+		<th>Judul Pustaka<br/>Pengarang</th>
+		<th style="text-align: right;">Jml</th>
 		<th>Status</th>
-		<th>Pembuatan</th>
-		<th>Terakhir diubah</th>
+		<th>Tgl Pembuatan/Perubahan</th>
 		<th>#</th>
 	</tr>
 	<?php foreach ($list_collection as $idx => $row) : ?>
 	<tr>
 		<td><?php echo $idx + 1; ?></td>
-		<td><?php echo $row->ISBN_ISSN ?></td>
-		<td>empty</td>
-		<td><?php echo $row->JUDUL_PUSTAKA ?></td>
+		<td>
+			<?php echo !empty($row->KODE_PUSTAKA) ? $row->KODE_PUSTAKA : "null" ?><br/>
+			<?php echo $row->ISBN_ISSN ?>
+		</td>
+		<td>
+			<?php echo $row->JUDUL_PUSTAKA ?><br/>
+			<em><?php echo $row->PENGARANG ?></em>
+		</td>
+		<td><?php echo $row->QTY ?>bh</td>
 		<td><?php echo $row->STATUS ? 'active' : 'inactive' ?></td>
-		<td><?php echo date("d M Y", strtotime($row->TANGGAL_PEMBUATAN)) ?></td>
-		<td><?php echo date("d M Y", strtotime($row->TANGGAL_PERUBAHAN)) ?></td>
+		<td>
+			<b>Pembuatan: </b><?php echo date("d M Y", strtotime($row->TANGGAL_PEMBUATAN)) ?><br/>
+		    <b>Perubahan: </b><?php echo date("d M Y", strtotime($row->TANGGAL_PERUBAHAN)) ?>
+		</td>
 		<td><?php echo anchor('collection/form_edit/'. $row->ID, 'Edit') ?></a></td>
 	</tr>
 	<?php endforeach; ?>
