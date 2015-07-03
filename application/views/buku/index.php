@@ -68,7 +68,7 @@
 		<th>No</th>
 		<th>Kode <br/>ISBN/ISNN</th>
 		<th>Judul Pustaka<br/>Pengarang</th>
-		<th style="text-align: right;">Jml</th>
+		<th>Jml</th>
 		<th>Status</th>
 		<th>Tgl Pembuatan/Perubahan</th>
 		<th>#</th>
@@ -84,7 +84,7 @@
 			<?php echo $row->JUDUL_PUSTAKA ?><br/>
 			<em><?php echo $row->PENGARANG ?></em>
 		</td>
-		<td><?php echo $row->QTY ?>bh</td>
+		<td class="text-right"><?php echo $row->QTY ?>bh</td>
 		<td><?php echo $row->STATUS ? 'active' : 'inactive' ?></td>
 		<td>
 			<b>Pembuatan: </b><?php echo date("d M Y", strtotime($row->TANGGAL_PEMBUATAN)) ?><br/>
