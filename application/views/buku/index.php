@@ -49,7 +49,7 @@
 </div>
 <form method="post" class="form-inline">
 	<div class="form-group">
-		<input type="text" name="judul_book" class="form-control" placeholder="Masukan judul buku">
+		<input type="text" name="judul_book" class="form-control" placeholder="Masukan judul buku" required="required">
 	</div>
 	<div class="form-group">
 	    <?php echo form_dropdown('clasifications', $clasifications, null, 'class="form-control"'); ?>
