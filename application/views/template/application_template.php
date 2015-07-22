@@ -57,7 +57,9 @@
 		<?php echo anchor('logout', 'Loggout'); ?>
 	</div>
 	<div class="row">
-		<?php $this->load->view($main); ?>	
+		<div class="col-lg-12">
+			<?php $this->load->view($main); ?>	
+		</div>
 	</div>
 	<br/>
 	<div class="row">

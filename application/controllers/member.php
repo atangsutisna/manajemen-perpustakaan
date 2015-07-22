@@ -6,13 +6,49 @@ class Member extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct('anggota');
+		$this->load->model('member_model');
 	}
 	
-	function list_anggota_ajax()
+	function index() 
 	{
-		$this->data['results'] = $this->anggota_model->get_records();
-		$this->load->view('anggota/list-anggota', $this->data);
+		$this->data['list_members'] = $this->member_model->get_records();
+		$this->data['main'] = 'member/index';
+		$this->load->view($this->template, $this->data);
 	}
+	
+	function new_form() 
+	{
+		$this->data['main'] = 'member/form';
+		$this->load->view($this->template, $this->data);
+	}
+	
+	function form_edit($member_id) 
+	{
+		$this->data['member'] = $this->member_model->find_one($member_id);
+		$this->data['main'] = 'member/form';
+		$this->load->view($this->template, $this->data);
+	}
+	
+	function form_view($member_id)
+	{
+		$member_id = $this->input->get('member_id');
+		$this->data['feedback_msg'] = $this->session->flashdata('feedback_msg');
+		$this->data['member'] = $this->member_model->get_record($member_id);
+		$this->data['main'] = 'anggota/form';
+		$this->load->view($this->template, $this->data);
+	}
+	
+	function save()
+	{
+		$this->load->library('form_validation');
+		if ($this->form_validation->run() == TRUE) {
+			
+		}
+		
+		$this->data['main'] = 'member/form';
+		$this->load->view($this->template, $this->data);
+	}
+
 	
 	function save_ajax()
 	{
@@ -46,7 +82,7 @@ class Member extends MY_Controller {
 	
 	function edit_ajax($anggota_id)
 	{
-		$anggota = $this->anggota_model->get_record($anggota_id);
+		$anggota = $this->member_model->get_record($anggota_id);
 		
 		$data_anggota['no_anggota'] = $anggota->NO_ANGGOTA;
 		$data_anggota['nama_anggota'] = $anggota->NAMA_ANGGOTA;
@@ -73,7 +109,7 @@ class Member extends MY_Controller {
 	
 	function remove($id)
 	{
-		$member = $this->anggota_model->get_by(array('ID' => $id))->row();
+		$member = $this->member_model->get_by(array('ID' => $id))->row();
 		
 		if ($member->STATUS_PINJAMAN == TRUE)
 		{
