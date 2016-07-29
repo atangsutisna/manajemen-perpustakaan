@@ -21,8 +21,9 @@ class Member_model extends MY_Model {
 		return $query->row();
 	}
 	
-	function get_records() 
+	function get_records($limit=10) 
 	{
+		//TODO: batasi misalnya 10;
 		$this->db->select("business_entity.*");
 		$this->db->select("mst_users.ID, mst_users.KODE_USER, mst_users.STATUS, mst_users.TANGGAL_PEMBUATAN, mst_users.TANGGAL_PERUBAHAN");
 		$this->db->from("mst_users");

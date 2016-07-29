@@ -10,7 +10,8 @@ class User extends MY_Controller {
 	
 	function __construct()
 	{
-		parent::__construct('user');
+		//parent::__construct('user');
+		$this->load->model('user_model');
 		$this->load->library('form_validation');
 	}
 	

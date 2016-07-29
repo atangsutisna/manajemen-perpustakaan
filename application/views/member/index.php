@@ -8,7 +8,7 @@
 	</div>
 	<form method="post" class="form-inline">
 		<div class="form-group">
-			<input type="text" name="term" class="form-control" placeholder="Masukan no anggota, nama atau alamat" required="required">
+			<input type="text" name="term" class="form-control col-lg-2" placeholder="Masukan no anggota, nama atau alamat" required="required">
 		</div>
 		<button type="submit" class="btn">
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

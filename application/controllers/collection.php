@@ -22,6 +22,7 @@ class Collection extends MY_Controller {
 	
 	function index()
 	{
+		//TODO: ini harus di batasi, misalnya 10;
 		$this->data['list_collection'] = $this->collection_model->get_records();
 		//$this->data['collection_amount'] = $this->collection_model->count_collections();
 		$this->data['main'] = 'buku/index';
